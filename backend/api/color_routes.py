@@ -1,3 +1,5 @@
+import re
+
 from flask import Blueprint, request, jsonify
 from backend.models import db, PartOfSpeech
 
@@ -14,6 +16,17 @@ def get_all_colors():
 @color_routes.route('/', methods=['POST'])
 def create_color():
     data = request.get_json()
+
+    # Check if required fields are missing
+    if not data.get('name'):
+        return jsonify({"error": "Missing required field: name"}), 400
+    if not data.get('color_code'):
+        return jsonify({"error": "Missing required field: color_code"}), 400
+
+    # Validate color_code format (hexadecimal color code)
+    if not re.match(r'^#[0-9A-Fa-f]{6}$', data['color_code']):
+        return jsonify({"error": "Invalid color code format."}), 400
+
     new_color = PartOfSpeech(
         name=data['name'],
         color_code=data['color_code']
