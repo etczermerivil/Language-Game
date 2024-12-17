@@ -4,13 +4,14 @@ from backend.models import db, PartOfSpeech
 color_routes = Blueprint('colors', __name__)
 
 # GET all color schemes
-@color_routes.route('/colors', methods=['GET'])
+@color_routes.route('/', methods=['GET'])
 def get_all_colors():
     colors = PartOfSpeech.query.all()
     return jsonify([color.to_dict() for color in colors]), 200
 
+
 # POST: Create a new color scheme
-@color_routes.route('/colors', methods=['POST'])
+@color_routes.route('/', methods=['POST'])
 def create_color():
     data = request.get_json()
     new_color = PartOfSpeech(
@@ -22,7 +23,7 @@ def create_color():
     return jsonify(new_color.to_dict()), 201
 
 # PUT: Update an existing color scheme
-@color_routes.route('/colors/<int:color_id>', methods=['PUT'])
+@color_routes.route('/<int:color_id>', methods=['PUT'])
 def update_color(color_id):
     color = PartOfSpeech.query.get(color_id)
     if not color:
@@ -34,7 +35,7 @@ def update_color(color_id):
     return jsonify(color.to_dict()), 200
 
 # DELETE: Remove a color scheme
-@color_routes.route('/colors/<int:color_id>', methods=['DELETE'])
+@color_routes.route('/<int:color_id>', methods=['DELETE'])
 def delete_color(color_id):
     color = PartOfSpeech.query.get(color_id)
     if not color:
