@@ -1,6 +1,8 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginFormPage from '../components/LoginFormPage';
 import SignupFormPage from '../components/SignupFormPage';
+import DecksPage from '../components/DecksPage/DecksPage'; // Import Decks page
+import CardsPage from '../components/CardsPage/CardsPage'; // Import Cards page
 import Layout from './Layout';
 
 export const router = createBrowserRouter([
@@ -18,6 +20,14 @@ export const router = createBrowserRouter([
       {
         path: "signup",
         element: <SignupFormPage />,
+      },
+      {
+        path: "decks",
+        element: <DecksPage />,
+      },
+      {
+        path: "cards",
+        element: <CardsPage />,
       },
     ],
   },
