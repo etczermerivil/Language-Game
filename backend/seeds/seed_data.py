@@ -64,10 +64,12 @@ def seed_words():
         reader = csv.DictReader(file)
 
         for row in reader:
+            # Find the associated PartOfSpeech and Language
             part_of_speech = PartOfSpeech.query.filter_by(name=row['part_of_speech']).first()
             language = Language.query.filter_by(code=row['language_code']).first()
 
             if part_of_speech and language:
+                # Create a new Word object with the updated fields
                 word = Word(
                     word_text=row['word'],
                     part_of_speech_id=part_of_speech.id,
@@ -75,7 +77,11 @@ def seed_words():
                     ipa=row.get('ipa'),
                     lemma=row.get('lemma'),
                     image_url=row.get('image_url'),
-                    card_count=row.get('card_count', 1)
+                    card_count=row.get('card_count', 1),
+                    pronunciation=row.get('pronunciation'),
+                    definition=row.get('definition'),
+                    example_sentence=row.get('example_sentence'),
+                    example_translation=row.get('example_translation')
                 )
                 db.session.add(word)
 

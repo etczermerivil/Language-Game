@@ -14,18 +14,27 @@ def seed_decks():
         print("No words available to seed decks. Run word seeds first.")
         return
 
-    # Create example decks and associate words
+    # Create example decks
     deck1 = Deck(name="Starter Deck", user_id=user.id)
     deck2 = Deck(name="Advanced Deck", user_id=user.id)
-
-    deck1.words.extend(words[:5])  # Associate first 5 words with Starter Deck
-    deck2.words.extend(words[5:10])  # Associate next 5 words with Advanced Deck
 
     db.session.add(deck1)
     db.session.add(deck2)
     db.session.commit()
 
+    # Avoid duplicate associations
+    for word in words[:5]:
+        if word not in deck1.words:
+            deck1.words.append(word)
+
+    for word in words[5:10]:
+        if word not in deck2.words:
+            deck2.words.append(word)
+
+    db.session.commit()
+
     print("Decks seeded successfully.")
+
 
 def undo_decks():
     if environment == "production":

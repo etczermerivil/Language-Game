@@ -21,15 +21,23 @@ class Word(db.Model):
     part_of_speech = db.relationship('PartOfSpeech', back_populates='words')
     language = db.relationship('Language', back_populates='words')
     decks = db.relationship("Deck", secondary="deck_cards", back_populates="words")
+    pronunciation = db.Column(db.String(100), nullable=True)  # Optional field for romanized pronunciation
+    definition = db.Column(db.String(255), nullable=False)  # Word meaning/translation
+    example_sentence = db.Column(db.Text, nullable=True)  # Contextual example
+    example_translation = db.Column(db.Text, nullable=True)  # Translation of the example sentence
 
     def to_dict(self):
         return {
             'id': self.id,
             'word_text': self.word_text,
-            'part_of_speech': self.part_of_speech.name,
-            'language': self.language.name,
+            'part_of_speech': self.part_of_speech.name,  # Assuming PartOfSpeech has a 'name' field
+            'language': self.language.name,  # Assuming Language has a 'name' field
             'ipa': self.ipa,
             'lemma': self.lemma,
             'image_url': self.image_url,
-            'card_count': self.card_count
+            'card_count': self.card_count,
+            'pronunciation': self.pronunciation,  # Include pronunciation
+            'definition': self.definition,  # Include definition
+            'example_sentence': self.example_sentence,  # Include example_sentence
+            'example_translation': self.example_translation  # Include example_translation
         }
