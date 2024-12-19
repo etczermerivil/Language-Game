@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from backend.models import db,  Word, PartOfSpeech, Language
+from flask_login import login_required
 
 card_routes = Blueprint('cards', __name__)
 
@@ -7,7 +8,20 @@ card_routes = Blueprint('cards', __name__)
 @card_routes.route('/', methods=['GET'])
 def get_all_cards():
     cards = Word.query.all()
-    return jsonify([card.to_dict() for card in cards]), 200 if cards else jsonify([]), 200
+    if cards:
+        return jsonify([card.to_dict() for card in cards]), 200
+    else:
+        return jsonify([]), 200
+
+
+# @card_routes.route('/', methods=['GET'])
+# def get_all_cards():
+#     cards = Word.query.all()  # Fetch all cards
+#     if cards:
+#         return jsonify([card.to_dict() for card in cards]), 200
+#     else:
+#         return jsonify([]), 200
+
 
 # GET a single card by ID
 @card_routes.route('/<int:card_id>', methods=['GET'])
@@ -19,6 +33,8 @@ def get_card(card_id):
 
 
 @card_routes.route('/', methods=['POST'])
+@login_required
+
 def create_card():
     """
     Create a new card
@@ -81,6 +97,8 @@ def create_card():
 
 # PUT: Update an existing card
 @card_routes.route('/<int:card_id>', methods=['PUT'])
+@login_required
+
 def update_card(card_id):
     card = Word.query.get(card_id)
     if not card:
@@ -103,6 +121,8 @@ def update_card(card_id):
 
 # DELETE: Remove a card
 @card_routes.route('/<int:card_id>', methods=['DELETE'])
+@login_required
+
 def delete_card(card_id):
     card = Word.query.get(card_id)
     if not card:

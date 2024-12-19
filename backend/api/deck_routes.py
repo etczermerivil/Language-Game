@@ -1,5 +1,6 @@
 from flask import Blueprint, request, jsonify
 from backend.models import db, Deck, User
+from flask_login import login_required
 
 deck_routes = Blueprint('decks', __name__)
 
@@ -7,7 +8,11 @@ deck_routes = Blueprint('decks', __name__)
 @deck_routes.route('/', methods=['GET'])
 def get_all_decks():
     decks = Deck.query.all()
-    return jsonify([deck.to_dict() for deck in decks]), 200 if decks else jsonify([]), 200
+
+    if decks:
+        return jsonify([deck.to_dict() for deck in decks]), 200
+    else:
+        return jsonify([]), 200
 
 # GET a single deck by ID
 @deck_routes.route('/<int:deck_id>', methods=['GET'])
@@ -19,6 +24,8 @@ def get_deck(deck_id):
 
 # POST: Create a new deck
 @deck_routes.route('/', methods=['POST'])
+@login_required
+
 def create_deck():
     data = request.get_json()
 
@@ -47,7 +54,9 @@ def create_deck():
     return jsonify(new_deck.to_dict()), 201
 
 # PUT: Update an existing deck
-@deck_routes.route('/int:deck_id', methods=['PUT'])
+@deck_routes.route('/<int:deck_id>', methods=['PUT'])
+@login_required
+
 def update_deck(deck_id):
     deck = Deck.query.get(deck_id)
     if not deck:
@@ -59,6 +68,8 @@ def update_deck(deck_id):
 
 # DELETE: Remove a deck
 @deck_routes.route('/<int:deck_id>', methods=['DELETE'])
+@login_required
+
 def delete_deck(deck_id):
     deck = Deck.query.get(deck_id)
     if not deck:

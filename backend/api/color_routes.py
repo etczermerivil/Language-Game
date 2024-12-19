@@ -2,6 +2,7 @@ import re
 
 from flask import Blueprint, request, jsonify
 from backend.models import db, PartOfSpeech
+from flask_login import login_required
 
 color_routes = Blueprint('colors', __name__)
 
@@ -14,6 +15,8 @@ def get_all_colors():
 
 # POST: Create a new color scheme
 @color_routes.route('/', methods=['POST'])
+@login_required
+
 def create_color():
     data = request.get_json()
 
@@ -37,6 +40,8 @@ def create_color():
 
 # PUT: Update an existing color scheme
 @color_routes.route('/<int:color_id>', methods=['PUT'])
+@login_required
+
 def update_color(color_id):
     color = PartOfSpeech.query.get(color_id)
     if not color:
@@ -49,6 +54,8 @@ def update_color(color_id):
 
 # DELETE: Remove a color scheme
 @color_routes.route('/<int:color_id>', methods=['DELETE'])
+@login_required
+
 def delete_color(color_id):
     color = PartOfSpeech.query.get(color_id)
     if not color:

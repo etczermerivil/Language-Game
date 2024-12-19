@@ -1,5 +1,7 @@
 from flask import Blueprint, request, jsonify
 from backend.models import db, Language
+from flask_login import login_required
+
 
 language_routes = Blueprint('languages', __name__)
 
@@ -19,6 +21,8 @@ def get_language_by_code(code):
 
 # POST: Create a new language
 @language_routes.route('/', methods=['POST'])
+@login_required
+
 def create_language():
     data = request.get_json()
     new_language = Language(
@@ -31,6 +35,8 @@ def create_language():
 
 # PUT to update a language by its code
 @language_routes.route('/<string:code>', methods=['PUT'])
+@login_required
+
 def update_language_by_code(code):
     language = Language.query.filter_by(code=code).first()
     if not language:
@@ -47,6 +53,8 @@ def update_language_by_code(code):
 
 # DELETE a language by its code
 @language_routes.route('/<string:code>', methods=['DELETE'])
+@login_required
+
 def delete_language_by_code(code):
     language = Language.query.filter_by(code=code).first()
     if not language:
