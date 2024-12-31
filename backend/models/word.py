@@ -30,14 +30,14 @@ class Word(db.Model):
         return {
             'id': self.id,
             'word_text': self.word_text,
-            'part_of_speech': self.part_of_speech.name,  # Assuming PartOfSpeech has a 'name' field
-            'language': self.language.name,  # Assuming Language has a 'name' field
+            'part_of_speech': self.part_of_speech.name,
+            'language': self.language.name,
             'ipa': self.ipa,
             'lemma': self.lemma,
             'image_url': self.image_url,
             'card_count': self.card_count,
-            'pronunciation': self.pronunciation,  # Include pronunciation
-            'definition': self.definition,  # Include definition
-            'example_sentence': self.example_sentence,  # Include example_sentence
-            'example_translation': self.example_translation  # Include example_translation
+            'pronunciation': self.pronunciation,
+            'definition': self.definition,
+            'example_sentence': self.example_sentence,
+            'example_translation': self.example_translation
         }

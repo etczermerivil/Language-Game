@@ -1,0 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Dongle&family=Fredoka:wght@300..700&family=Manjari:wght@100;400;700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+
+
+/* General container styling */
+.profile-links {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Welcome text */
+.welcome-user {
+  font-size: 16px;
+  color: #444;
+  font-family: 'Poppins', sans-serif; /* Apply Poppins explicitly */
+}
+
+/* Base styles for all links and buttons */
+.profile-links button,
+.profile-links a {
+  font-size: 18px;
+  font-weight: 450;
+  padding: 5px 15px;
+  border-radius: 30px;
+  text-decoration: none;
+
+  cursor: pointer;
+  transition: color 0.4s ease, background-color 0.3s ease;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+/* Log In Link */
+.login-link {
+  color: rgb(148, 144, 144);
+  /* border: 1px solid #007bff; */
+  font-family: 'Poppins', sans-serif;
+   background: none;
+   border: none
+}
+
+.login-link:hover {
+  color: #3F3B3B;
+  font-weight: 550;
+  /* background-color: #007bff; */
+}
+
+/* Sign Up Link */
+.signup-link {
+  color: white;
+  background-color: #347EEF;
+  border: 2px solid #347EEF;
+}
+
+.signup-link:hover {
+  color: #347EEF;
+  font-weight: 550;
+  background-color: white;
+
+}
+/* Logout Button */
+.logout-button {
+  color: #dc3545;
+  border: 1px solid #dc3545;
+}
+
+.logout-button:hover {
+  color: #fff;
+  background-color: #dc3545;
+}

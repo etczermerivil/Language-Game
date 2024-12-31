@@ -14,15 +14,6 @@ def get_all_cards():
         return jsonify([]), 200
 
 
-# @card_routes.route('/', methods=['GET'])
-# def get_all_cards():
-#     cards = Word.query.all()  # Fetch all cards
-#     if cards:
-#         return jsonify([card.to_dict() for card in cards]), 200
-#     else:
-#         return jsonify([]), 200
-
-
 # GET a single card by ID
 @card_routes.route('/<int:card_id>', methods=['GET'])
 def get_card(card_id):

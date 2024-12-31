@@ -1,3 +1,97 @@
-.profile-dropdown {
+/* Navigation Box (Container) */
+.nav-box {
+  padding:none;
+  padding: 8px 0;
+  margin:none;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-bottom: 1px solid #347EEF;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061);
+}
+
+.nav-item{
+border:none;
+}
+
+/* Navigation Bar */
+.navbar {
+  padding: none;
+  width: 100%;
+  max-width: 1250px;
+  /* background-color: black; */
+  /* border-radius: 10px; */
+  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+}
+
+/* Navigation Menu */
+.nav-menu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+/* Navigation Items */
+.nav-item {
+  font-size: 1rem;
+}
+
+/* Navigation Links */
+.nav-link {
+  color: #3F3B3B;
+  text-decoration: none;
+  font-size: 25px;
+  font-weight: 800;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+
+/* .nav-link:hover {
+  color:  #0353F5;
+} */
+
+/* Hover Effect - Glowing Border */
+/* .nav-link::after {
+  content: "";
   position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color:  #0353F5;
+  bottom: -4px;
+  left: 0;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+} */
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Profile Button */
+.profile-item {
+  margin-left: auto;
+}
+
+.profile-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+}
+
+.profile-button:hover {
+  color: #00ffcc;
 }

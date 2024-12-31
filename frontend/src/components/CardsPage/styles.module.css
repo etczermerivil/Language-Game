@@ -1,0 +1,88 @@
+.collectionSection {
+  background: #111;
+  padding: 20px;
+  color: #fff;
+}
+
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: white;
+  width: 150px;
+  height: 200px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+
+.cardImage {
+  width: 100%;
+  height: 60%;
+  object-fit: cover;
+  border-bottom: 1px solid #ddd;
+}
+
+.cardTitle {
+  margin-top: 10px;
+  font-size: 16px;
+  color: #333;
+}
+
+.cardWrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: left;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cardTitle {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.partOfSpeech {
+  font-weight: bold;
+  color: #555;
+}
+
+.pronunciation {
+  font-style: italic;
+  color: #666;
+}
+
+.definition {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.exampleSentence {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.exampleTranslation {
+  font-size: 14px;
+  color: #666;
+}
