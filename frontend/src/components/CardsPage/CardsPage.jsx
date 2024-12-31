@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import 'swiper/css/effect-coverflow'
 import styles from './styles.module.css';
 
 const partOfSpeechColors = {
@@ -28,14 +28,23 @@ function Collections() {
 
   // Render the component
   return (
-    <div className={styles.collectionSection}>
-      <Swiper
-        modules={[Navigation, Pagination]}
-        spaceBetween={20}
-        slidesPerView={3}
-        navigation
-        pagination={{ clickable: true }}
-        loop
+          <div className={styles.collectionSection}>
+            <Swiper
+            modules={[Navigation, EffectCoverflow]} // Add EffectCoverflow here
+            effect="coverflow" // Enable the coverflow effect
+            grabCursor={true} // Allow grabbing the slider with the mouse
+            centeredSlides={true} // Center the active slide
+            slidesPerView={3} // Adjust number of visible slides
+            coverflowEffect={{
+              rotate: 50, // Degree of rotation
+              stretch: 0, // Space between slides
+              depth: 100, // 3D depth effect
+              modifier: 1, // Effect intensity
+              slideShadows: true, // Enable shadows for slides
+            }}
+            navigation
+            pagination={{ clickable: true }}
+            loop
       >
         {cards.map((card) => (
 
@@ -46,8 +55,10 @@ function Collections() {
              backgroundColor: partOfSpeechColors[card.part_of_speech] || partOfSpeechColors.default,
            }}
          >
+           <p className={styles.partOfSpeech}>{card.part_of_speech}</p> {/* Part of Speech */}
+
            <p className={styles.cardTitle}>{card.word_text}</p> {/* Word Text */}
-           <p className={styles.partOfSpeech}>Part of Speech: {card.part_of_speech}</p> {/* Part of Speech */}
+
            {card.pronunciation && (
              <p className={styles.pronunciation}>Pronunciation: {card.pronunciation}</p>
            )}

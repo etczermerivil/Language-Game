@@ -20,3 +20,10 @@ body {
     justify-content: center;
     align-items: center;
   }
+
+  .swiper-slide-shadow-left,
+.swiper-slide-shadow-right {
+  background: rgba(0, 0, 0, 0.061);
+  filter: blur(30px);
+  transition: background 0.3s ease, filter 0.3s ease;
+}
