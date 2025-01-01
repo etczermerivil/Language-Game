@@ -76,7 +76,7 @@
   align-items: center;
 }
 
-.hamburgerMenu {
+/* .hamburgerMenu {
   background: #007bff;
   border-radius: 50%;
   width: 50px;
@@ -87,28 +87,57 @@
   margin-right: 20px;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+} */
+
+.hamburgerMenu {
+  background: none; /* Remove background and glow from the circle */
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
 }
 
 .hamburgerIcon div {
   width: 25px;
   height: 3px;
-  background: white;
+  background: #32cd32; /* Green base color for the bars */
   margin: 3px 0;
-  border-radius: 2px;
+  border-radius: 2px; /* Rounded edges for the bars */
+  animation: glowPulse 2s infinite; /* Pulsing effect for the bars */
+  box-shadow: 0 0 5px rgba(50, 205, 50, 0.6), /* Inner glow */
+              0 0 10px rgba(50, 205, 50, 0.5); /* Outer glow */
 }
+
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(50, 205, 50, 0.6),
+                0 0 10px rgba(50, 205, 50, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 12px rgba(50, 205, 50, 1),
+                0 0 24px rgba(50, 205, 50, 0.6);
+  }
+}
+
 
 .dropdownMenu {
   position: absolute;
   top: 60px;
   right: 0;
-  background: #1a1a1ae2; /* Match your website's theme */
+  background: #1a1a1ae2;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   width: 200px;
   padding: 10px 0;
   z-index: 10;
   margin-right: 20px;
+
+
 }
+
 
 .dropdownItem {
   padding: 10px 15px;
@@ -120,6 +149,19 @@
   background: none;
   width: 100%;
 }
+
+.dropdownItem {
+  padding: 10px 15px;
+  background: rgba(26, 26, 26, 0.95); /* Restore background for items */
+  color: white;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  width: 100%;
+  z-index: 1; /* Place above the glow */
+}
+
 
 .dropdownItem:hover {
   background: #333;

@@ -1,7 +1,7 @@
 /* Navigation Box (Container) */
 .nav-box {
   padding:none;
-  padding: 15px;
+  padding: 12px;
   margin:none;
   height: auto;
   display: flex;
@@ -44,12 +44,16 @@ border:none;
 
 /* Navigation Links */
 .nav-link {
-  color: #4f4949;
+  color: #363333;
   text-decoration: none;
   font-size: 25px;
   font-weight: 800;
   position: relative;
   transition: color 0.3s ease;
+  text-shadow: 0 0 4px #fff,
+  0 0 px #fff,
+  0 0 0px #fff;
+  text-align: center;
 }
 
 
