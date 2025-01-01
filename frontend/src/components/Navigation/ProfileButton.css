@@ -67,3 +67,69 @@
   color: #fff;
   background-color: #dc3545;
 }
+
+
+.profile-container {
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hamburgerMenu {
+  background: #007bff;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.hamburgerIcon div {
+  width: 25px;
+  height: 3px;
+  background: white;
+  margin: 3px 0;
+  border-radius: 2px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: 60px;
+  right: 0;
+  background: #1a1a1ae2; /* Match your website's theme */
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 200px;
+  padding: 10px 0;
+  z-index: 10;
+  margin-right: 20px;
+}
+
+.dropdownItem {
+  padding: 10px 15px;
+  color: white;
+  font-size: 16px;
+  text-align: left;
+  cursor: pointer;
+  border: none;
+  background: none;
+  width: 100%;
+}
+
+.dropdownItem:hover {
+  background: #333;
+}
+
+.dropdownItem button {
+  all: unset;
+  width: 100%;
+}
+
+.dropdownItem button:hover {
+  background: none;
+}
