@@ -37,87 +37,101 @@ function Collections() {
   // Render the component
   return (
     <div className={styles.pageContainer}>
-      {/* Swiper Section */}
-      <div className={styles.collectionSection}>
-        <Swiper
-          modules={[Navigation, EffectCoverflow]}
-          effect="coverflow"
-          grabCursor={true}
-          centeredSlides={true}
-          slidesPerView={3}
-          coverflowEffect={{
-            rotate: 50,
-            stretch: 0,
-            depth: 100,
-            modifier: 1,
-            slideShadows: true,
-          }}
-          navigation
-          pagination={{ clickable: true }}
-          loop
-        >
+      {/* Swiper Section Box */}
+      <div className={styles.swiperBox}>
+      <Swiper
+        modules={[Navigation, EffectCoverflow]}
+        effect="coverflow"
+        grabCursor={true}
+        centeredSlides={true}
+        slidesPerView={3}
+        coverflowEffect={{
+          rotate: 50,
+          stretch: 0,
+          depth: 100,
+          modifier: 1,
+          slideShadows: true,
+        }}
+        navigation
+        pagination={{ clickable: true }}
+        loop
+        style={{
+          height: '100%', // Ensure Swiper container uses full height
+          width: '100%', // Ensure Swiper container uses full width
+        }}
+  >
           {cards.map((card) => (
-  <SwiperSlide key={card.id} className={styles.cardWrapper}>
-  <div className={styles.flipCard} data-color={card.part_of_speech.toLowerCase()}>
-    {/* Front of the Card */}
-    <div
-      className={`${styles.cardSide} ${styles.front}`}
-      style={{
-        backgroundImage:
-          partOfSpeechColors[card.part_of_speech] || partOfSpeechColors.default,
-      }}
-    >
-      <p className={styles.partOfSpeechTop}>{card.part_of_speech}</p>
-      <p className={styles.cardTitle}>{card.word_text}</p>
-      <p className={styles.partOfSpeechBottom}>{card.part_of_speech}</p>
-    </div>
+            <SwiperSlide key={card.id} className={styles.cardWrapper}>
+              <div
+                className={styles.flipCard}
+                data-color={card.part_of_speech.toLowerCase()}
+              >
+                {/* Front of the Card */}
+                <div
+                  className={`${styles.cardSide} ${styles.front}`}
+                  style={{
+                    backgroundImage:
+                      partOfSpeechColors[card.part_of_speech] ||
+                      partOfSpeechColors.default,
+                  }}
+                >
+                  <p className={styles.partOfSpeechTop}>
+                    {card.part_of_speech}
+                  </p>
+                  <p className={styles.cardTitle}>{card.word_text}</p>
+                  <p className={styles.partOfSpeechBottom}>
+                    {card.part_of_speech}
+                  </p>
+                </div>
 
-    {/* Back of the Card */}
-    <div
-      className={`${styles.cardSide} ${styles.back}`}
-      style={{
-        backgroundImage:
-          partOfSpeechColors[card.part_of_speech] || partOfSpeechColors.default,
-      }}
-    >
-      <div className={styles.cardContent}>
-        {card.pronunciation && (
-          <p className={styles.pronunciation}>
-            <span className={styles.key}>Pronunciation:</span> {card.pronunciation}
-          </p>
-        )}
-        <p className={styles.definition}>
-          <span className={styles.key}>Definition:</span> {card.definition}
-        </p>
-        {card.example_sentence && (
-          <p className={styles.exampleSentence}>
-            <span className={styles.key}>Example:</span> {card.example_sentence}
-          </p>
-        )}
-        {card.example_translation && (
-          <p className={styles.exampleTranslation}>
-            <span className={styles.key}>Translation:</span> {card.example_translation}
-          </p>
-        )}
-      </div>
-    </div>
-  </div>
-</SwiperSlide>
-
-))}
-
-                  {/* Button Section */}
-        <div className={styles.buttonContainer}>
-          <button
-            className={styles.createCardButton}
-            onClick={() => alert("Create a new card")}
-          >
-            +
-          </button>
-        </div>
+                {/* Back of the Card */}
+                <div
+                  className={`${styles.cardSide} ${styles.back}`}
+                  style={{
+                    backgroundImage:
+                      partOfSpeechColors[card.part_of_speech] ||
+                      partOfSpeechColors.default,
+                  }}
+                >
+                  <div className={styles.cardContent}>
+                    {card.pronunciation && (
+                      <p className={styles.pronunciation}>
+                        <span className={styles.key}>Pronunciation:</span>{" "}
+                        {card.pronunciation}
+                      </p>
+                    )}
+                    <p className={styles.definition}>
+                      <span className={styles.key}>Definition:</span>{" "}
+                      {card.definition}
+                    </p>
+                    {card.example_sentence && (
+                      <p className={styles.exampleSentence}>
+                        <span className={styles.key}>Example:</span>{" "}
+                        {card.example_sentence}
+                      </p>
+                    )}
+                    {card.example_translation && (
+                      <p className={styles.exampleTranslation}>
+                        <span className={styles.key}>Translation:</span>{" "}
+                        {card.example_translation}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
+      </div>
 
-
+      {/* Button Section Box */}
+      <div className={styles.buttonBox}>
+        <button
+          className={styles.createCardButton}
+          onClick={() => alert("Create a new card")}
+        >
+          +
+        </button>
       </div>
     </div>
   );

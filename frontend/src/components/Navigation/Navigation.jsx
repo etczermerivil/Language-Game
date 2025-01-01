@@ -9,7 +9,7 @@ function Navigation() {
         <ul className="nav-menu">
           <li className="nav-item">
             <NavLink to="/" className="nav-link">
-              WP
+              Word Pallete
             </NavLink>
           </li>
           <li className="nav-item profile-item">
