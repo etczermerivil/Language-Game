@@ -12,6 +12,7 @@ body {
   color: white;
   font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 /* Utility Class for Flex Centering */
