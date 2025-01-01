@@ -25,9 +25,28 @@ margin-top: 10px;
 }
 
 
+/* .card {
+  background: #BABDE2;
+  border-radius: 15px;
+  padding: 20px;
+  width: 250px;
+  height: 400px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 10px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #E6E6E6;
+} */
+
 .card {
   background: #BABDE2; /* Example soft color from the palette */
-  border-radius: 15px;
+  border-radius: 15px; /* Rounded corners for a soft look */
   padding: 20px;
   width: 250px;
   height: 400px;
@@ -42,8 +61,26 @@ margin-top: 10px;
   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
   border: 1px solid #E6E6E6; /* Optional subtle border */
-}
 
+  /* --- new styles --- */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, .5); /* Layered shadow for depth */
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  /* Optional gradient border */
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  background-image: linear-gradient(white, white), linear-gradient(225deg, #FF0000, #0066FF);
+  background-origin: border-box;
+
+  /* Optional gradient background animation */
+  background: linear-gradient(225deg, #FF0000, #0066FF);
+  background-size: 200% 200%;
+  animation: gradientShift 3s ease infinite;
+
+  /* Optional subtle inner glow */
+  box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.2); /* Inner glow for depth */
+}
 
 .cardContent {
   padding: 10px;
@@ -55,9 +92,16 @@ margin-top: 10px;
   text-align: left;
 }
 
-.card:hover {
-  transform: scale(1.05); /* Slightly enlarge on hover */
+/* .card:hover {
+  transform: scale(1.05);
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+} */
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: #0066FF;
+  animation: wiggle 0.3s ease-in-out;
 }
 
 
@@ -68,7 +112,6 @@ margin-top: 10px;
   text-transform: uppercase;
   text-align: center;
 }
-
 
 
 .partOfSpeechTop {
@@ -122,8 +165,6 @@ margin-top: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: #fff;
 }
-
-
 
 .menuOptions {
   position: absolute;
@@ -234,4 +275,29 @@ margin-top: 10px;
 
 .flipCard:hover .back {
   transform: rotateY(0deg); /* Show back side */
+}
+
+/* Base glow for active Swiper slide */
+.swiper-slide-active .flipCard {
+  position: relative;
+  z-index: 1;
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3); /* Default subtle glow */
+}
+
+/* Dynamic glow based on the card's part of speech */
+.swiper-slide-active .flipCard[data-color="noun"] {
+  box-shadow: 0 0 30px 15px rgba(0, 102, 255, 0.6); /* Blue glow */
+}
+
+.swiper-slide-active .flipCard[data-color="verb"] {
+  box-shadow: 0 0 30px 15px rgba(255, 0, 0, 0.6); /* Red glow */
+}
+
+.swiper-slide-active .flipCard[data-color="adjective"] {
+  box-shadow: 0 0 30px 15px rgba(92, 0, 184, 0.6); /* Purple glow */
+}
+
+.swiper-slide-active .flipCard[data-color="article"] {
+  box-shadow: 0 0 30px 15px rgba(255, 215, 0, 0.6); /* Gold glow */
 }

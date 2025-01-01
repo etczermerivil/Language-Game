@@ -15,11 +15,11 @@ import styles from './styles.module.css';
 // };
 
 const partOfSpeechColors = {
-  Noun: 'radial-gradient(180deg, #0066FF, #4A90E2)', // Gradient from DodgerBlue to a lighter blue
-  Verb: 'radial-gradient(180deg, #FF0000, #FF6347)', // Gradient from red to a softer red
-  Adjective: 'radial-gradient(180deg, #5F00B8, #7400E0',
-  Article: 'radial-gradient(180deg, #FFD700, #FFEC8B)',
-  default: 'radial-gradient(180deg, #ccc, #f2f2f2)',
+  Noun: 'linear-gradient(225deg, #0066FF, #1F78FF', // Gradient from DodgerBlue to a lighter blue
+  Verb: 'linear-gradient(225deg, #FF0000, #FF5000)', // Gradient from red to a softer red
+  Adjective: 'linear-gradient(225deg, #5F00B8, #931FFF',
+  Article: 'linear-gradient(225deg, #FFD500, #FFE208)',
+  default: 'linear-gradient(225deg, #ccc, #f2f2f2)',
 };
 
 function Collections() {
@@ -58,53 +58,52 @@ function Collections() {
         >
           {cards.map((card) => (
   <SwiperSlide key={card.id} className={styles.cardWrapper}>
-    <div className={styles.flipCard}>
-      {/* Front of the Card */}
-      <div
-        className={`${styles.cardSide} ${styles.front}`}
-        style={{
-          backgroundImage:
-            partOfSpeechColors[card.part_of_speech] ||
-            partOfSpeechColors.default,
-        }}
-      >
-        <p className={styles.partOfSpeechTop}>{card.part_of_speech}</p>
-        <p className={styles.cardTitle}>{card.word_text}</p>
-        <p className={styles.partOfSpeechBottom}>{card.part_of_speech}</p>
-      </div>
-
-     { /* Back of the Card */}
-<div
-  className={`${styles.cardSide} ${styles.back}`}
-  style={{
-    backgroundImage:
-      partOfSpeechColors[card.part_of_speech] ||
-      partOfSpeechColors.default,
-  }}
->
-  <div className={styles.cardContent}>
-    {card.pronunciation && (
-      <p className={styles.pronunciation}>
-        <span className={styles.key}>Pronunciation:</span> {card.pronunciation}
-      </p>
-    )}
-    <p className={styles.definition}>
-      <span className={styles.key}>Definition:</span> {card.definition}
-    </p>
-    {card.example_sentence && (
-      <p className={styles.exampleSentence}>
-        <span className={styles.key}>Example:</span> {card.example_sentence}
-      </p>
-    )}
-    {card.example_translation && (
-      <p className={styles.exampleTranslation}>
-        <span className={styles.key}>Translation:</span> {card.example_translation}
-      </p>
-    )}
-  </div>
-</div>
+  <div className={styles.flipCard} data-color={card.part_of_speech.toLowerCase()}>
+    {/* Front of the Card */}
+    <div
+      className={`${styles.cardSide} ${styles.front}`}
+      style={{
+        backgroundImage:
+          partOfSpeechColors[card.part_of_speech] || partOfSpeechColors.default,
+      }}
+    >
+      <p className={styles.partOfSpeechTop}>{card.part_of_speech}</p>
+      <p className={styles.cardTitle}>{card.word_text}</p>
+      <p className={styles.partOfSpeechBottom}>{card.part_of_speech}</p>
     </div>
-  </SwiperSlide>
+
+    {/* Back of the Card */}
+    <div
+      className={`${styles.cardSide} ${styles.back}`}
+      style={{
+        backgroundImage:
+          partOfSpeechColors[card.part_of_speech] || partOfSpeechColors.default,
+      }}
+    >
+      <div className={styles.cardContent}>
+        {card.pronunciation && (
+          <p className={styles.pronunciation}>
+            <span className={styles.key}>Pronunciation:</span> {card.pronunciation}
+          </p>
+        )}
+        <p className={styles.definition}>
+          <span className={styles.key}>Definition:</span> {card.definition}
+        </p>
+        {card.example_sentence && (
+          <p className={styles.exampleSentence}>
+            <span className={styles.key}>Example:</span> {card.example_sentence}
+          </p>
+        )}
+        {card.example_translation && (
+          <p className={styles.exampleTranslation}>
+            <span className={styles.key}>Translation:</span> {card.example_translation}
+          </p>
+        )}
+      </div>
+    </div>
+  </div>
+</SwiperSlide>
+
 ))}
 
                   {/* Button Section */}
