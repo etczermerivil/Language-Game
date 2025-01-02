@@ -9,7 +9,9 @@ function Navigation() {
         <ul className="nav-menu">
           <li className="nav-item">
             <NavLink to="/" className="nav-link">
-              Word Pallete
+              <span className="word" data-index="1">WP</span>
+              &nbsp;
+              {/* <span className="word" data-index="2">P</span> */}
             </NavLink>
           </li>
           <li className="nav-item profile-item">

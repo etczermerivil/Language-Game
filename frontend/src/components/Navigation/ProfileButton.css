@@ -141,17 +141,6 @@
 
 .dropdownItem {
   padding: 10px 15px;
-  color: white;
-  font-size: 16px;
-  text-align: left;
-  cursor: pointer;
-  border: none;
-  background: none;
-  width: 100%;
-}
-
-.dropdownItem {
-  padding: 10px 15px;
   background: rgba(26, 26, 26, 0.95); /* Restore background for items */
   color: white;
   font-size: 16px;
@@ -165,6 +154,7 @@
 
 .dropdownItem:hover {
   background: #333;
+  color:#32cd32;
 }
 
 .dropdownItem button {

@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #111111;
+  background-color: #111111fb;
   border-bottom: 1px solid rgba(245, 245, 245, 0.167);
   /* box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061); */
 }
@@ -44,7 +44,7 @@ border:none;
 
 /* Navigation Links */
 .nav-link {
-  color: #363333;
+  color: #fff8f8;
   text-decoration: none;
   font-size: 25px;
   font-weight: 800;
@@ -57,23 +57,7 @@ border:none;
 }
 
 
-/* .nav-link:hover {
-  color:  #0353F5;
-} */
 
-/* Hover Effect - Glowing Border */
-/* .nav-link::after {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 2px;
-  background-color:  #0353F5;
-  bottom: -4px;
-  left: 0;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
-} */
 
 .nav-link:hover::after {
   transform: scaleX(1);
@@ -99,4 +83,16 @@ border:none;
 
 .profile-button:hover {
   color: #00ffcc;
+}
+
+/* Static color for "Word" */
+.word[data-index="1"] {
+  color:  #eaeaeae3; /* Green */
+  /* text-shadow: 0px 0px 5px #4AE056; */
+}
+
+/* Static color for "Pallete" */
+.word[data-index="2"] {
+  color: #7a7a7ab6;
+  /* text-shadow: 0px 0px 5px #FFA500; */
 }
