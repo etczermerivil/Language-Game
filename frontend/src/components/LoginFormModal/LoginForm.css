@@ -9,14 +9,6 @@
   } */
 
   /* Page container */
-  .login-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Full viewport height */
-    background-color: rgba(0, 0, 0, 0.95); /* Slightly transparent dark overlay */
-  }
-
 
   /* Form styling */
   form {
@@ -24,60 +16,53 @@
     border-radius: 12px;
     padding: 40px;
     width: 100%;
-    max-width: 350px; /* Reduced width for text areas */
+    max-width: 350px;
     text-align: center;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
   /* Form heading */
   h1 {
     color: #fff;
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    font-weight: bold;
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 25px;
+    font-weight: 400;
     text-align: center;
   }
 
-  /* Label styling */
-  form label {
-    display: block;
-    font-size: 1rem;
-    color: #b3b3b3;
-    margin-bottom: 8px;
-    text-align: left;
-
-  }
 
   /* Input field styling */
   form input {
-    width: 325px;
-    padding: 14px;
-    margin-bottom: 20px;
-    border: none;
-    border-radius: 25px;
     background: #2e2e2e;
+    border:none;
+    outline: none;
     color: #fff;
-    font-size: 1rem;
-    text-indent: 10px;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-    transition: box-shadow 0.3s ease, background 0.3s ease;
+
   }
 
   /* Add subtle glowing focus to inputs */
-  form input:focus {
+  /* form input:focus {
     outline: none;
-    background: #333; /* Slightly lighter background on focus */
+    background: #333;
     border: 1px solid #4ae056;
-    box-shadow: 0 0 3px .03px #4ae056; /* Subtle green glow on focus */
-  }
+    box-shadow: 0 0 3px .03px #4ae056;
+  } */
 
   /* Button styling */
   form button {
     width: 100%;
-    padding: 16px; /* Increased padding for better spacing */
-    margin-top: 20px; /* Additional space above the button */
-    background: linear-gradient(135deg, #4ae056, #35a844); /* Gradient button */
+    max-width: 300px;
+    padding: 16px;
+    margin-top: 20px;
+    background: linear-gradient(135deg, #4ae056, #35a844);
     border: none;
-    border-radius: 25px; /* Rounded button */
+    border-radius: 25px;
     color: #fff;
     font-size: 1rem;
     font-weight: bold;
@@ -102,54 +87,64 @@
 
 /* Input group container */
 .input-group {
-  position: relative;
+  display: flex;
+  align-items: center;
   margin-bottom: 20px;
   width: 100%;
+  max-width: 300px;
+  background: #2e2e2e;
+  border-radius: 25px;
+  padding: 10px 15px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
 /* Icon inside input fields */
 .input-icon {
-  position: absolute;
-  top: 50%;
-  left: 15px;
-  transform: translateY(-50%);
-  pointer-events: none; /* Prevent interfering with input clicks */
-}
-
-.input-icon img {
-  width: 18px;
-  height: 18px;
-  opacity: 0.8; /* Slightly faded icon */
+  color: #b3b3b3; /* Icon color */
+  font-size: 1.2rem; /* Adjust icon size */
+  margin-right: 10px; /* Space between icon and input */
+  pointer-events: none; /* Prevent interference with input clicks */
 }
 
 /* Input fields */
 .input-field {
-  width: 100%;
-  padding: 14px 14px 14px 45px; /* Add padding to leave space for the icon */
+  flex: 1;
   border: none;
   border-radius: 25px;
-  background: #2e2e2e; /* Slightly lighter dark background */
-  color: #fff;
+  background: transparent;
+  color: #fff; /* Text color */
   font-size: 1rem;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.6);
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  padding: 10px; /* Adjust padding for better spacing */
+  box-shadow: none; /* Remove inner shadow from the input */
 }
 
 /* Placeholder text style */
 .input-field::placeholder {
-  color: #b3b3b3;
+  color: #b3b3b3; /* Light gray placeholder */
   opacity: 0.9;
-  font-size: 0.95rem;
+  font-size: 1rem; /* Match font size */
 }
 
 /* Focus effects */
 .input-field:focus {
   outline: none;
-  background: #333; /* Slightly lighter background on focus */
-  border: 1px solid #4ae056; /* Green border on focus */
-  /* box-shadow: 0 0 0px 1px #4ae056;  */
+  background: transparent; /* Keep transparent on focus */
+  border: none;
+  color: #fff; /* Ensure text remains white */
 }
 
+/* Error Styling */
+.input-error {
+  border: 1px solid #ff4c4c; /* Red border for inputs with errors */
+  box-shadow: 0 0 8px 2px rgba(255, 76, 76, 0.5); /* Subtle red glow */
+}
+
+.error-text {
+  color: #ff4c4c; /* Red color for error text */
+  font-size: 0.85rem; /* Slightly smaller text */
+  margin: -10px 0 10px 10px; /* Adjust margin for proper spacing */
+  text-align: left;
+}
 
   /* Responsive adjustments */
   @media (max-width: 600px) {

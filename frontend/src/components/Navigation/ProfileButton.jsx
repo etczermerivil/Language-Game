@@ -5,15 +5,18 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./ProfileButton.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function ProfileButton() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.session.user);
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    navigate("/");
   };
 
   const toggleMenu = () => {

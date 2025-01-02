@@ -38,16 +38,16 @@
 
 /* Modal content */
 #modal-content {
-  position: relative; /* Ensures proper stacking within the modal */
+  display: flex;
   background-color: #121212e1;
   border-radius: 12px; /* Rounded corners for better aesthetics */
   padding: 40px;
   max-width: 400px;
-  width: 90%; /* Responsive width */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6); /* Subtle shadow for depth */
-  z-index: 1001; /* Higher than modal background */
+  width: 100%;
+  z-index: 1001;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  transition: box-shadow 0.3s ease; /* Smooth transition for the glow */
 }
-
 
 /* Semi-transparent background behind modal content */
 #modal-background {
@@ -58,6 +58,31 @@
   height: 100%;
   background-color: #1e1e1ef9;
   cursor: pointer;
+}
+
+/* #modal-content:focus-within,
+#modal-content:active {
+  box-shadow: 0 0 6px .1px #4ae056, 0 0 3px 1px #4ae056;
+  outline: none;
+} */
+
+/* Green pulsating glow when modal is focused or clicked */
+#modal-content:focus-within,
+#modal-content:active {
+  animation: pulsate 3s infinite; /* Pulsate effect */
+  outline: none; /* Remove default outline */
+}
+
+@keyframes pulsate {
+  0% {
+    box-shadow: 0 0 2px 1px #4ae056, 0 0 3px 1px #4ae056; /* Faint initial glow */
+  }
+  50% {
+    box-shadow: 0 0 8px 1px #4ae056, 0 0 5px 1.5px #4ae056; /* Stronger glow at midpoint */
+  }
+  100% {
+    box-shadow: 0 0 2px 1px #4ae056, 0 0 3px 1px #4ae056; /* Back to faint glow */
+  }
 }
 
 /* Animation for modal content */

@@ -12,7 +12,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
-  if (sessionUser) return <Navigate to="/" replace={true} />;
+  if (sessionUser) return <Navigate to="/cards" replace={true} />;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -27,7 +27,7 @@ function LoginFormPage() {
     if (serverResponse) {
       setErrors(serverResponse);
     } else {
-      navigate("/");
+      navigate("/cards");
     }
   };
 
@@ -40,7 +40,7 @@ function LoginFormPage() {
         {/* Email Input */}
         <div className="input-group">
           <span className="input-icon">
-            <img src="path-to-email-icon.svg" alt="Email Icon" />
+            <img src="/icons/email-icon.svg" alt="Email Icon" />
           </span>
           <input
             type="text"
@@ -56,7 +56,7 @@ function LoginFormPage() {
         {/* Password Input */}
         <div className="input-group">
           <span className="input-icon">
-            <img src="path-to-password-icon.svg" alt="Password Icon" />
+            <img src="/icons/password-icon.svg" alt="Password Icon" />
           </span>
           <input
             type="password"

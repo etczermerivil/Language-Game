@@ -7,9 +7,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #11111100;
+  background-color: #111111d4;
   border-bottom: 1px solid rgba(245, 245, 245, 0.373);
-  /* box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061); */
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061);
 }
 
 .nav-item{
@@ -95,4 +95,23 @@ border:none;
 .word[data-index="2"] {
   color: #7a7a7ab6;
   /* text-shadow: 0px 0px 5px #FFA500; */
+}
+
+/* Remove background and border on the landing page */
+.nav-box.landing-page {
+  background-color: transparent; /* No background */
+  border-bottom: none; /* Remove border */
+  box-shadow: none; /* Remove shadow */
+}
+
+/* Ensure the navigation items are hidden on the landing page except the profile button */
+.nav-box.landing-page .nav-item:not(.profile-item) {
+  display: none; /* Hide everything except the profile item */
+}
+
+/* Ensure the hamburger menu (ProfileButton) remains aligned */
+.nav-box.landing-page .profile-item {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
 }
