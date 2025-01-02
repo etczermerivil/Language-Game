@@ -2,7 +2,7 @@
 margin-top: 10px;
 }
 
-.collectionSection {
+/* .collectionSection {
   background: #111;
   padding: 10px;
   color: #fff;
@@ -14,18 +14,21 @@ margin-top: 10px;
   margin: auto;
   box-sizing: border-box;
   position: relative;
-}
+} */
 
 .swiperBox {
+  flex: 1;
   width: 100%;
   height: 550px; /* Adjust height to fit cards properly */
   background: #111;
   padding: 20px;
   display: flex;
-  justify-content: center; /* Center cards horizontally */
-  align-items: center; /* Center cards vertically */
-  box-sizing: border-box; /* Include padding in height calculation */
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
 }
+
+
 
 
 .cardWrapper {
@@ -164,7 +167,7 @@ margin-top: 10px;
 }
 
 
-.slideableCard {
+/* .slideableCard {
   display: flex;
   position: relative;
   overflow: hidden;
@@ -173,12 +176,12 @@ margin-top: 10px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background: #fff;
-}
+} */
 
-.menuOptions {
+/* .menuOptions {
   position: absolute;
   top: 0;
-  right: -150px; /* Initially hidden */
+  right: -150px;
   display: flex;
   flex-direction: column;
   background: #333;
@@ -201,7 +204,7 @@ margin-top: 10px;
 
 .menuOptions button:hover {
   text-decoration: underline;
-}
+} */
 
 /* Reveal menu on hover */
 .slideableCard:hover .menuOptions {
@@ -217,7 +220,7 @@ margin-top: 10px;
   position: relative;
 }
 
-.createCardContainer {
+/* .createCardContainer {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -241,7 +244,7 @@ margin-top: 10px;
   justify-content: center;
   align-items: center;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-}
+} */
 
 .createCardButton:hover {
   background: #0056b3;
@@ -339,4 +342,89 @@ margin-top: 10px;
 .value {
   margin-top: 0;
   font-size: 12px; /* Adjust font size for better readability */
+}
+
+/* Button Box Styling */
+.buttonBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 40px;
+}
+
+/* Base Button Style */
+.circleButton {
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  border: none;
+  border-radius: 50%; /* Make buttons circular */
+  color: #FFFFFF; /* White text or icon */
+  cursor: pointer;
+  font-size: 1.5rem; /* Icon and text size */
+  font-weight: bold;
+  height: 50px; /* Adjust circle size */
+  width: 50px; /* Make it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  transition: all 0.3s ease;
+  outline: none;
+  z-index: 1;
+}
+
+.circleButton:hover {
+  animation: glow 1s ease-in-out infinite;
+}
+
+.circleButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #4CAF50; /* Base green */
+  border-radius: inherit;
+  filter: blur(10px);
+  opacity: 0.75;
+  z-index: -1;
+  transition: all 0.3s ease-in-out;
+}
+
+.circleButton:hover::before {
+  filter: blur(20px);
+  opacity: 1;
+}
+
+/* Edit Button (Yellow) */
+.editButton {
+  background: linear-gradient(135deg, #FFD700, #FFC107); /* Yellow gradient */
+}
+
+.editButton::before {
+  background: #FFD700; /* Yellow glow */
+}
+
+/* Delete Button (Red) */
+.deleteButton {
+  background: linear-gradient(135deg, #FF4C4C, #FF0000);
+  font-size: 17px;
+}
+
+.deleteButton::before {
+  background: #FF4C4C; /* Red glow */
+}
+
+/* Glow Animation */
+@keyframes glow {
+  0% {
+    background: #4CAF50;
+  }
+  50% {
+    background: #66BB6A;
+  }
+  100% {
+    background: #4CAF50;
+  }
 }

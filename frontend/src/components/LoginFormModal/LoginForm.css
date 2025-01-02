@@ -1,14 +1,6 @@
-/* General page styling */
-/* body, html {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: 'Poppins', sans-serif;
-    background-color: #000;
-  } */
 
-  /* Page container */
+
+
 
   /* Form styling */
   form {
@@ -31,9 +23,10 @@
     font-size: 40px;
     margin: 0;
     padding: 0;
-    margin-bottom: 25px;
-    font-weight: 400;
+    margin-bottom: 40px;
+    font-weight: 300;
     text-align: center;
+
   }
 
 
@@ -54,8 +47,67 @@
     box-shadow: 0 0 3px .03px #4ae056;
   } */
 
-  /* Button styling */
+
   form button {
+    background: linear-gradient(135deg, #2e8b2e, #3cb33c, #267026); /* Subtle green gradient */
+    border: none;
+    border-radius: 25px;
+    color: #FFFFFF; /* White text */
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    outline: none;
+    padding: 16px;
+    width: 100%;
+    max-width: 330px;
+    position: relative;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+  }
+
+  form button:hover {
+    transform: translateY(-2px); /* Lift effect on hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
+    animation: glow 1s ease-in infinite; /* Glow animation */
+  }
+
+  form button::before {
+    content: '';
+    background: #2e8b2e; /* Main green for glow */
+    border-radius: inherit;
+    filter: blur(10px);
+    opacity: 0.6; /* Softer glow */
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+    animation: glow 1.5s ease-in infinite; /* Glow effect */
+  }
+
+  form button:hover::before {
+    filter: blur(18px); /* Softer blur */
+    opacity: 0.8; /* Slightly more visible glow */
+  }
+
+  @keyframes glow {
+    0% {
+      background: #2e8b2e; /* Base green */
+    }
+    50% {
+      background: #3cb33c; /* Medium green */
+    }
+    100% {
+      background: #267026; /* Darker green */
+    }
+  }
+
+  /* Button styling */
+  /* form button {
     width: 100%;
     max-width: 300px;
     padding: 16px;
@@ -72,9 +124,9 @@
   }
 
   form button:hover {
-    transform: translateY(-2px); /* Lift effect on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
-  }
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  } */
 
   /* Error message styling */
   form p {

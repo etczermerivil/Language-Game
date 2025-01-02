@@ -5,6 +5,9 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow'
 import styles from './styles.module.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMinus, faPencil } from '@fortawesome/free-solid-svg-icons';
+
 
 const partOfSpeechColors = {
   Noun: 'linear-gradient(225deg, #0066FF, #1F78FF', // Gradient from DodgerBlue to a lighter blue
@@ -26,109 +29,123 @@ function Collections() {
       .catch((error) => console.error('Error fetching data:', error));
   }, []); // Empty dependency array ensures this runs only once when the component mounts
 
-  // Render the component
   return (
     <div className={styles.pageContainer}>
-      {/* Swiper Section Box */}
-      <div className={styles.swiperBox}>
-      <Swiper
-        modules={[Navigation, EffectCoverflow]}
-        effect="coverflow"
-        grabCursor={true}
-        centeredSlides={true}
-        slidesPerView={3}
-        coverflowEffect={{
-          rotate: 50,
-          stretch: 0,
-          depth: 100,
-          modifier: 1,
-          slideShadows: true,
-        }}
-        navigation
-        pagination={{ clickable: true }}
-        loop
-        style={{
-          height: '100%', // Ensure Swiper container uses full height
-          width: '100%', // Ensure Swiper container uses full width
-        }}
-  >
-          {cards.map((card) => (
-            <SwiperSlide key={card.id} className={styles.cardWrapper}>
-              <div
-                className={styles.flipCard}
-                data-color={card.part_of_speech.toLowerCase()}
-              >
-                {/* Front of the Card */}
+      {/* Main Content Section */}
+      <div className={styles.mainContent}>
+        {/* Swiper Section */}
+        <div className={styles.swiperBox}>
+          <Swiper
+            modules={[Navigation, EffectCoverflow]}
+            effect="coverflow"
+            grabCursor={true}
+            centeredSlides={true}
+            slidesPerView={3}
+            coverflowEffect={{
+              rotate: 50,
+              stretch: 0,
+              depth: 115,
+              modifier: 1,
+              slideShadows: true,
+            }}
+            navigation
+            pagination={{ clickable: true }}
+            loop
+            style={{
+              height: '100%',
+              width: '100%',
+            }}
+          >
+            {cards.map((card) => (
+              <SwiperSlide key={card.id} className={styles.cardWrapper}>
                 <div
-                  className={`${styles.cardSide} ${styles.front}`}
-                  style={{
-                    backgroundImage:
-                      partOfSpeechColors[card.part_of_speech] ||
-                      partOfSpeechColors.default,
-                  }}
+                  className={styles.flipCard}
+                  data-color={card.part_of_speech.toLowerCase()}
                 >
-                  <p className={styles.partOfSpeechTop}>
-                    {card.part_of_speech}
-                  </p>
-                  <p className={styles.cardTitle}>{card.word_text}</p>
-                  <p className={styles.partOfSpeechBottom}>
-                    {card.part_of_speech}
-                  </p>
-                </div>
-
-                {/* Back of the Card */}
-                <div
-                  className={`${styles.cardSide} ${styles.back}`}
-                  style={{
-                    backgroundImage:
-                      partOfSpeechColors[card.part_of_speech] ||
-                      partOfSpeechColors.default,
-                  }}
-                >
-                  <div className={styles.cardContent}>
-                    {card.pronunciation && (
-                      <div className={styles.cardSection}>
-                        <p className={styles.key}>Pronunciation:</p>
-                        <p className={styles.value}>{card.pronunciation}</p>
-                      </div>
-                    )}
-                    <div className={styles.cardSection}>
-                      <p className={styles.key}>Definition:</p>
-                      <p className={styles.value}>{card.definition}</p>
-                    </div>
-                    {card.example_sentence && (
-                      <div className={styles.cardSection}>
-                        <p className={styles.key}>Example:</p>
-                        <p className={styles.value}>{card.example_sentence}</p>
-                      </div>
-                    )}
-                    {card.example_translation && (
-                      <div className={styles.cardSection}>
-                        <p className={styles.key}>Translation:</p>
-                        <p className={styles.value}>{card.example_translation}</p>
-                      </div>
-                    )}
+                  {/* Front of the Card */}
+                  <div
+                    className={`${styles.cardSide} ${styles.front}`}
+                    style={{
+                      backgroundImage:
+                        partOfSpeechColors[card.part_of_speech] ||
+                        partOfSpeechColors.default,
+                    }}
+                  >
+                    <p className={styles.partOfSpeechTop}>
+                      {card.part_of_speech}
+                    </p>
+                    <p className={styles.cardTitle}>{card.word_text}</p>
+                    <p className={styles.partOfSpeechBottom}>
+                      {card.part_of_speech}
+                    </p>
                   </div>
 
+                  {/* Back of the Card */}
+                  <div
+                    className={`${styles.cardSide} ${styles.back}`}
+                    style={{
+                      backgroundImage:
+                        partOfSpeechColors[card.part_of_speech] ||
+                        partOfSpeechColors.default,
+                    }}
+                  >
+                    <div className={styles.cardContent}>
+                      {card.pronunciation && (
+                        <div className={styles.cardSection}>
+                          <p className={styles.key}>Pronunciation:</p>
+                          <p className={styles.value}>{card.pronunciation}</p>
+                        </div>
+                      )}
+                      <div className={styles.cardSection}>
+                        <p className={styles.key}>Definition:</p>
+                        <p className={styles.value}>{card.definition}</p>
+                      </div>
+                      {card.example_sentence && (
+                        <div className={styles.cardSection}>
+                          <p className={styles.key}>Example:</p>
+                          <p className={styles.value}>{card.example_sentence}</p>
+                        </div>
+                      )}
+                      {card.example_translation && (
+                        <div className={styles.cardSection}>
+                          <p className={styles.key}>Translation:</p>
+                          <p className={styles.value}>{card.example_translation}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
-      </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
 
-      {/* Button Section Box */}
-      <div className={styles.buttonBox}>
-        <button
-          className={styles.createCardButton}
-          onClick={() => alert("Create a new card")}
-        >
-          +
-        </button>
+        {/* Side Menu for Buttons */}
+        <div className={styles.buttonBox}>
+          <button
+            className={styles.circleButton}
+            onClick={() => alert("Create a new card")}
+          >
+            +
+          </button>
+
+          <button
+            className={`${styles.circleButton} ${styles.editButton}`}
+            onClick={() => alert("Edit a card")}
+          >
+            <FontAwesomeIcon icon={faPencil} />
+          </button>
+
+          <button
+            className={`${styles.circleButton} ${styles.deleteButton}`}
+            onClick={() => alert("Delete a card")}
+          >
+            <FontAwesomeIcon icon={faMinus} />
+          </button>
+        </div>
       </div>
     </div>
   );
-
 
 }
 
