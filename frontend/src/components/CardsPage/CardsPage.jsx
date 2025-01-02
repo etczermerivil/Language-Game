@@ -6,14 +6,6 @@ import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow'
 import styles from './styles.module.css';
 
-// const partOfSpeechColors = {
-//   Noun: '#0066FF', // DodgerBlue
-//   Verb: '#FF0000', // Red
-//   Adjective: '#7C05E8', // BlueViolet
-//   Article: '#FFD700', // Gold
-//   default: '#ccc', // Gray for unknown parts of speech
-// };
-
 const partOfSpeechColors = {
   Noun: 'linear-gradient(225deg, #0066FF, #1F78FF', // Gradient from DodgerBlue to a lighter blue
   Verb: 'linear-gradient(225deg, #FF0000, #FF5000)', // Gradient from red to a softer red
@@ -95,28 +87,29 @@ function Collections() {
                 >
                   <div className={styles.cardContent}>
                     {card.pronunciation && (
-                      <p className={styles.pronunciation}>
-                        <span className={styles.key}>Pronunciation:</span>{" "}
-                        {card.pronunciation}
-                      </p>
+                      <div className={styles.cardSection}>
+                        <p className={styles.key}>Pronunciation:</p>
+                        <p className={styles.value}>{card.pronunciation}</p>
+                      </div>
                     )}
-                    <p className={styles.definition}>
-                      <span className={styles.key}>Definition:</span>{" "}
-                      {card.definition}
-                    </p>
+                    <div className={styles.cardSection}>
+                      <p className={styles.key}>Definition:</p>
+                      <p className={styles.value}>{card.definition}</p>
+                    </div>
                     {card.example_sentence && (
-                      <p className={styles.exampleSentence}>
-                        <span className={styles.key}>Example:</span>{" "}
-                        {card.example_sentence}
-                      </p>
+                      <div className={styles.cardSection}>
+                        <p className={styles.key}>Example:</p>
+                        <p className={styles.value}>{card.example_sentence}</p>
+                      </div>
                     )}
                     {card.example_translation && (
-                      <p className={styles.exampleTranslation}>
-                        <span className={styles.key}>Translation:</span>{" "}
-                        {card.example_translation}
-                      </p>
+                      <div className={styles.cardSection}>
+                        <p className={styles.key}>Translation:</p>
+                        <p className={styles.value}>{card.example_translation}</p>
+                      </div>
                     )}
                   </div>
+
                 </div>
               </div>
             </SwiperSlide>
