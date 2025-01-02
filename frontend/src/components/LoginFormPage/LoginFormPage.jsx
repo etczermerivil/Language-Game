@@ -37,26 +37,38 @@ function LoginFormPage() {
       {errors.length > 0 &&
         errors.map((message) => <p key={message}>{message}</p>)}
       <form onSubmit={handleSubmit}>
-        <label>
-          Email
+        {/* Email Input */}
+        <div className="input-group">
+          <span className="input-icon">
+            <img src="path-to-email-icon.svg" alt="Email Icon" />
+          </span>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
             required
+            className="input-field"
           />
-        </label>
+        </div>
         {errors.email && <p>{errors.email}</p>}
-        <label>
-          Password
+
+        {/* Password Input */}
+        <div className="input-group">
+          <span className="input-icon">
+            <img src="path-to-password-icon.svg" alt="Password Icon" />
+          </span>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
             required
+            className="input-field"
           />
-        </label>
+        </div>
         {errors.password && <p>{errors.password}</p>}
+
         <button type="submit">Log In</button>
       </form>
     </>

@@ -93,7 +93,7 @@ function LandingPage() {
       const minStringSpeed = 0.5;
       const maxStringSpeed = 1;
 
-      const MAX_LINES = 0; // Maximum number of active lines
+      const MAX_LINES = 100; // Maximum number of active lines
       let activeLines = 0; // Counter to track active lines
 
       const matrixString = () => {
