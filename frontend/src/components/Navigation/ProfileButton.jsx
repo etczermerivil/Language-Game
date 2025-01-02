@@ -5,7 +5,7 @@ import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import "./ProfileButton.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -16,6 +16,7 @@ function ProfileButton() {
   const logout = (e) => {
     e.preventDefault();
     dispatch(thunkLogout());
+    setMenuOpen(false); // Close the dropdown
     navigate("/");
   };
 
@@ -49,7 +50,7 @@ function ProfileButton() {
               <button className="dropdownItem">
                 <OpenModalMenuItem
                   itemText="Log In"
-                  modalComponent={<LoginFormModal />}
+                  modalComponent={<LoginFormModal closeMenu={() => setMenuOpen(false)} />}
                 />
               </button>
               <button className="dropdownItem">

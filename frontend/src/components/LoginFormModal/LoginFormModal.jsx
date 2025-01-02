@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
 
 
-function LoginFormModal() {
+function LoginFormModal({ closeMenu }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
@@ -30,6 +30,7 @@ function LoginFormModal() {
       setErrors(serverResponse); // Handle errors if login fails
     } else {
       closeModal();
+      closeMenu(); // Close the dropdown after logging in
       setTimeout(() => {
         navigate("/cards"); // Redirect after modal cleanup
       }, 100);
@@ -38,12 +39,11 @@ function LoginFormModal() {
 
   return (
     <>
-
       <form onSubmit={handleSubmit}>
-      <h1>Log In</h1>
+        <h1>Log In</h1>
         <div className="input-group">
           <span className="input-icon">
-          <FontAwesomeIcon icon={faEnvelope} />
+            <FontAwesomeIcon icon={faEnvelope} />
           </span>
           <input
             type="text"
@@ -56,7 +56,7 @@ function LoginFormModal() {
         {errors.email && <p>{errors.email}</p>}
         <div className="input-group">
           <span className="input-icon">
-          <FontAwesomeIcon icon={faLock} />
+            <FontAwesomeIcon icon={faLock} />
           </span>
           <input
             type="password"
