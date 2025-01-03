@@ -2,10 +2,23 @@
    1) Container & Layout
 ------------------------------ */
 
-.pageContainer {
+/* .pageContainer {
   margin-top: 25px;
   width: 100%;
+} */
+
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between; /* Spread items out horizontally */
+  align-items: stretch; /* Stretch items to fill the container vertically */
+  gap: 20px; /* Space between Swiper and buttons */
+  width: 100%; /* Take up full screen width */
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
 }
+
 
 .swiperBox {
   flex: 1;
@@ -47,8 +60,8 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;                     /* optional spacing */
-  max-width: 1450px; margin: 0 auto;
+  gap: 20px;
+  max-width: 1500px; margin: 0 auto;
   overflow: visible;
 }
 
@@ -267,9 +280,16 @@
 .editButton {
   background: linear-gradient(135deg, #FFD700, #FFC107);
 }
-
+.editButton:hover {
+  animation: glow-yellow 1s ease-in-out infinite;
+}
 .editButton::before {
   background: #FFD700;
+}
+.editButton:hover::before {
+  background: #FFD700; /* Ensure yellow matches */
+  filter: blur(20px);
+  opacity: 1;
 }
 
 /* Delete Button (Red) */
@@ -277,16 +297,25 @@
   background: linear-gradient(135deg, #FF4C4C, #FF0000);
   font-size: 17px;
 }
-
+.deleteButton:hover {
+  animation: glow-red 1s ease-in-out infinite;
+}
 .deleteButton::before {
   background: #FF4C4C;
 }
+.deleteButton:hover::before {
+  background: #FF4C4C; /* Ensure red matches */
+  filter: blur(20px);
+  opacity: 1;
+}
+
 
 /* ------------------------------
    6) Animations
 ------------------------------ */
 
-@keyframes glow {
+/* Glow Animation for Green Buttons (Default Circle Button) */
+@keyframes glow-green {
   0% {
     background: #4CAF50;
   }
@@ -295,5 +324,31 @@
   }
   100% {
     background: #4CAF50;
+  }
+}
+
+/* Glow Animation for Yellow Buttons (Edit) */
+@keyframes glow-yellow {
+  0% {
+    background: #FFD700;
+  }
+  50% {
+    background: #FFC107;
+  }
+  100% {
+    background: #FFD700;
+  }
+}
+
+/* Glow Animation for Red Buttons (Delete) */
+@keyframes glow-red {
+  0% {
+    background: #FF4C4C;
+  }
+  50% {
+    background: #FF0000;
+  }
+  100% {
+    background: #FF4C4C;
   }
 }

@@ -17,7 +17,7 @@ const partOfSpeechColors = {
   default: 'linear-gradient(225deg, #ccc, #f2f2f2)',
 };
 
-function Collections() {
+function CardsPage() {
   // State to store fetched cards
   const [cards, setCards] = useState([]);
 
@@ -149,4 +149,4 @@ function Collections() {
 
 }
 
-export default Collections;
+export default CardsPage;

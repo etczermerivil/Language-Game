@@ -11,9 +11,7 @@
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061);
 }
 
-.word[data-index="1"] {
-  color: rgb(92, 3, 92); /* Example color for WP text */
-}
+
 
 .logo-item {
   margin-right: 50px; /* adjust as needed for spacing between WP and other links */
@@ -57,12 +55,31 @@
   font-weight: 250;
   position: relative;
   padding-right: 4px;
+  transition: color 0.3s ease;
 }
 
 
+/* Highlight active link */
+.nav-link.active {
+  color: rgb(175, 164, 164);
+  font-weight: 550;
+}
+
+.nav-link.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 2px;
+  background-color: rgb(175, 164, 164);
+  width: 100%;
+  margin: 0 auto;
+}
 
 /* Specific spacing for WP link: add extra margin on the right to separate from next item */
 .wp-link {
+
   margin-right: 50px; /* Adjust as needed for more or less space */
 }
 
@@ -91,8 +108,10 @@
 
 /* WP logo colors (if desired) */
 .word[data-index="1"] {
-  color: #eaeaeae3;
+  color: #32cd32; /* Example color for WP text */
+  font-weight: 700;
 }
+
 .word[data-index="2"] {
   color: #7a7a7ab6;
 }
