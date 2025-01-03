@@ -3,8 +3,8 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 
 function Navigation() {
-  const location = useLocation(); // Get the current route
-  const isLandingPage = location.pathname === "/"; // Check if it's the landing page
+  const location = useLocation();
+  const isLandingPage = location.pathname === "/";
 
   return (
     <div className={`nav-box ${isLandingPage ? "landing-page" : ""}`}>
@@ -12,14 +12,38 @@ function Navigation() {
         <ul className="nav-menu">
           {/* Show WP logo only if NOT on the landing page */}
           {!isLandingPage && (
-            <li className="nav-item">
-              <NavLink to="/" className="nav-link">
-                <span className="word" data-index="1">WP</span>
-              </NavLink>
+            <li className="nav-item logo-item">
+              <div className="logo-box">
+                <NavLink to="/" className="nav-link">
+                  <span className="word" data-index="1">WP</span>
+                </NavLink>
+              </div>
             </li>
           )}
 
-          {/* Always show the hamburger menu */}
+          {/* NEW NAV ITEMS */}
+          <li className="nav-item">
+            <NavLink to="/color-schemes" className="nav-link">
+              Color Schemes
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/cards" className="nav-link">
+              Cards
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/languages" className="nav-link">
+              Languages
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink to="/decks" className="nav-link">
+              Decks
+            </NavLink>
+          </li>
+
+          {/* PROFILE BUTTON (HAMBURGER) */}
           <li className="nav-item profile-item">
             <ProfileButton />
           </li>
@@ -30,6 +54,7 @@ function Navigation() {
 }
 
 export default Navigation;
+
 
 
 

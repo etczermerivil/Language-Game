@@ -1,8 +1,7 @@
 /* Navigation Box (Container) */
 .nav-box {
-  padding:none;
   padding: 5px;
-  margin:none;
+  margin: 0;
   height: auto;
   display: flex;
   align-items: center;
@@ -12,19 +11,22 @@
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061);
 }
 
-.nav-item{
-border:none;
+.word[data-index="1"] {
+  color: rgb(92, 3, 92); /* Example color for WP text */
+}
+
+.logo-item {
+  margin-right: 50px; /* adjust as needed for spacing between WP and other links */
 }
 
 /* Navigation Bar */
 .navbar {
-  padding: none;
   width: 100%;
-  padding-left: 40px;
-  /* max-width: 1250px; */
-  /* background-color: black; */
-  /* border-radius: 10px; */
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
+  padding-left: 40px; /* Left padding for some spacing */
+  /* Optionally limit total width and center:
+     max-width: 1250px;
+     margin: 0 auto;
+  */
 }
 
 /* Navigation Menu */
@@ -33,47 +35,48 @@ border:none;
   margin: 0;
   padding: 0;
   display: flex;
-  gap: 30px;
   align-items: center;
+  gap: 30px; /* Space between nav items */
 }
 
-/* Navigation Items */
+/* Each navigation item */
 .nav-item {
+  border: none;
   font-size: 1rem;
 }
 
-/* Navigation Links */
+/*
+  NAV LINK:
+  - Controls the font size, color, decoration for all nav items
+  - Remove or adjust text-shadow if you want no glow
+*/
 .nav-link {
   color: #fff8f8;
   text-decoration: none;
-  font-size: 25px;
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 250;
   position: relative;
-  transition: color 0.3s ease;
-  text-shadow: 0 0 4px #fff,
-  0 0 px #fff,
-  0 0 0px #fff;
-  text-align: center;
+  padding-right: 4px;
 }
 
 
 
-
-.nav-link:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
+/* Specific spacing for WP link: add extra margin on the right to separate from next item */
+.wp-link {
+  margin-right: 50px; /* Adjust as needed for more or less space */
 }
 
-/* Profile Button */
+/* Profile item on far right */
 .profile-item {
-  margin-left: auto;
+  margin-left: auto; /* pushes it to the far right */
 }
 
+/* Profile button styling */
 .profile-button {
   background: none;
   border: none;
-  color: white;
-  font-size: 1.5rem;
+  color: white;      /* font color */
+  font-size: 1.5rem; /* size of the hamburger or icon */
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -81,35 +84,30 @@ border:none;
   transition: color 0.3s ease;
 }
 
+/* Remove or keep simple hover color change */
 .profile-button:hover {
   color: #00ffcc;
 }
 
-/* Static color for "Word" */
+/* WP logo colors (if desired) */
 .word[data-index="1"] {
-  color:  #eaeaeae3; /* Green */
-  /* text-shadow: 0px 0px 5px #4AE056; */
+  color: #eaeaeae3;
 }
-
-/* Static color for "Pallete" */
 .word[data-index="2"] {
   color: #7a7a7ab6;
-  /* text-shadow: 0px 0px 5px #FFA500; */
 }
 
-/* Remove background and border on the landing page */
+/* Landing Page Overrides */
 .nav-box.landing-page {
-  background-color: transparent; /* No background */
-  border-bottom: none; /* Remove border */
-  box-shadow: none; /* Remove shadow */
+  background-color: transparent;
+  border-bottom: none;
+  box-shadow: none;
 }
 
-/* Ensure the navigation items are hidden on the landing page except the profile button */
 .nav-box.landing-page .nav-item:not(.profile-item) {
-  display: none; /* Hide everything except the profile item */
+  display: none;
 }
 
-/* Ensure the hamburger menu (ProfileButton) remains aligned */
 .nav-box.landing-page .profile-item {
   margin-left: auto;
   display: flex;
