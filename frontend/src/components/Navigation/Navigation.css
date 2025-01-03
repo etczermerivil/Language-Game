@@ -6,11 +6,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #111111d4;
+  background-color: #111111f5;
   border-bottom: 1px solid rgba(245, 245, 245, 0.373);
   box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.061);
 }
-
 
 
 .logo-item {
@@ -108,7 +107,11 @@
 
 /* WP logo colors (if desired) */
 .word[data-index="1"] {
-  color: #32cd32; /* Example color for WP text */
+  color: #32cd32;; /* Example color for WP text */
+  text-shadow:
+    0px 0px 0.1px #32cd32,
+    0px 0px 0.1px #32cd32,
+    0px 0px 5px #32cd32;
   font-weight: 700;
 }
 
