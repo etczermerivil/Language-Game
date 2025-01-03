@@ -15,12 +15,6 @@ function CreateCardModal() {
   const [definition, setDefinition] = useState("");
   const [errors, setErrors] = useState({});
 
-  // Function to retrieve the CSRF token from cookies
-  const getCsrfToken = () => {
-    const match = document.cookie.match(/csrf_token=([^;]+)/);
-    return match ? match[1] : null;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -30,37 +24,16 @@ function CreateCardModal() {
       language,
       part_of_speech: partOfSpeech,
       lemma,
-      definition, // Check this value
+      definition,
     };
 
-    console.log("Definition being sent:", definition); // Add this log
-    console.log("Card data being sent:", cardData); // Check all data
-
-    const csrfToken = getCsrfToken();
-
-    console.log("Definition:", definition); // Log the state value
-
-    const response = await fetch("/api/cards", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "X-CSRFToken": csrfToken,
-      },
-      credentials: "include",
-      body: JSON.stringify(cardData),
-    });
-
-    if (response.ok) {
-      closeModal();
+    const errors = await dispatch(thunkCreateCard(cardData));
+    if (errors) {
+      setErrors(errors); // Display validation errors
     } else {
-      const data = await response.json();
-      if (data.errors) {
-        setErrors(data.errors);
-      }
-      console.error("Failed to create card:", data);
+      closeModal(); // Close the modal on success
     }
   };
-
 
   return (
     <form onSubmit={handleSubmit} className="create-card-modal">

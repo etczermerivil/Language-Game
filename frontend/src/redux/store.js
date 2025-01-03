@@ -26,8 +26,6 @@
 // };
 
 // export default configureStore;
-
-
 import {
   legacy_createStore as createStore,
   applyMiddleware,
@@ -36,7 +34,7 @@ import {
 } from "redux";
 import thunk from "redux-thunk";
 import sessionReducer from "./session";
-import cardsReducer from "./cards"; // Import the cards reducer
+import cardsReducer from "./cards"; // Ensure this line appears only once
 
 const rootReducer = combineReducers({
   session: sessionReducer, // Existing session reducer
