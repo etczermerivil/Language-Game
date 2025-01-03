@@ -3,7 +3,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 function ParallaxParticles({ color }) {
-    console.log("Received Color Prop:", color);
+    // console.log("Received Color Prop:", color);
 
     const [particleOptions, setParticleOptions] = useState({
         autoPlay: true,
@@ -13,24 +13,24 @@ function ParallaxParticles({ color }) {
         },
         fullScreen: { enable: false, zIndex: -1 },
         detectRetina: true,
+
         particles: {
           number: {
             value: 250, // Increase particle count
             density: { enable: true, value_area: 800 },
           },
           color: { value: ["#FFFFFF"] },
-            shape: { type: "circle" },
-            opacity: {
+          shape: { type: "circle" }, // Keep one definition of "shape"
+          opacity: {
             value: 0.5, // Set default opacity for circles
             random: true, // Allow random opacity values
             animation: {
-                enable: true, // Enable opacity animation
-                speed: 2, // Speed of opacity animation
-                minimumValue: 0.1, // Minimum opacity value during animation
-                sync: false, // Animate independently for each circle
+              enable: true, // Enable opacity animation
+              speed: 2, // Speed of opacity animation
+              minimumValue: 0.1, // Minimum opacity value during animation
+              sync: false, // Animate independently for each circle
             },
-        },
-          shape: { type: "circle" },
+          },
           size: {
             value: 7,
             random: true,
