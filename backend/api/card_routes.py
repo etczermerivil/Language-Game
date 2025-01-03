@@ -2,6 +2,8 @@ from flask import Blueprint, request, jsonify
 from backend.models import db,  Word, PartOfSpeech, Language
 from flask_login import login_required
 
+from flask_login import current_user
+
 card_routes = Blueprint('cards', __name__)
 
 # GET all cards
@@ -23,14 +25,24 @@ def get_card(card_id):
     return jsonify(card.to_dict()), 200
 
 
-@card_routes.route('/', methods=['POST'])
+# POST route
+@card_routes.route('', methods=['POST'])
 @login_required
 
 def create_card():
+    print("Current user:", current_user)
+    print("Headers:", request.headers)
+    print("CSRF Token from request:", request.headers.get("X-CSRFToken"))
+
     """
     Create a new card
     """
+
     data = request.get_json()
+    print("Received data:", data)  # Log all received data
+    if not data.get("definition"):
+        print("Definition is missing or empty!")  # Log if the field is missing
+    ...
 
     # Check if required fields are missing
     if not data.get("word_text"):
@@ -65,6 +77,8 @@ def create_card():
         if existing_card:
             return jsonify({"error": "Card with this word_text and language already exists"}), 409
 
+        print("Definition being used:", data.get("definition"))
+
         # Create the Word instance using IDs for foreign keys
         new_card = Word(
             word_text=data["word_text"],
@@ -73,7 +87,8 @@ def create_card():
             language_id=language.id,
             lemma=data.get("lemma"),
             image_url=data.get("image_url"),
-            card_count=data.get("card_count", 1)  # Default to 1 if not provided
+            card_count=data.get("card_count", 1),  # Default to 1 if not provided
+            definition=data["definition"],  # Add this line to handle the definition field
         )
 
         db.session.add(new_card)

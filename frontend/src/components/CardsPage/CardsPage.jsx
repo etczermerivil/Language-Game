@@ -186,12 +186,13 @@ import { Navigation, EffectCoverflow } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/effect-coverflow';
-
+import { useModal } from "../../context/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPencil } from '@fortawesome/free-solid-svg-icons';
 
 import ParticlesBackground from "../ParticlesBackground/ParticlesBackground";
 
+import CreateCardModal from "../CreateCardModal/CreateCardModal";
 import styles from './styles.module.css';
 
 const partOfSpeechColors = {
@@ -215,6 +216,7 @@ function CardsPage() {
   // State to store fetched cards
   const [cards, setCards] = useState([]);
   const [activeColor, setActiveColor] = useState(partOfSpeechParticleColors.default);
+  const { setModalContent, setModalVisible } = useModal();
 
   // Fetch cards from the backend
   useEffect(() => {
@@ -224,6 +226,10 @@ function CardsPage() {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+  const handleCreateCardClick = () => {
+    setModalContent(<CreateCardModal />);
+    setModalVisible(true);
+  };
 
   const handleSlideChange = (swiper) => {
     const activeIndex = swiper.realIndex; // Get the correct slide index
@@ -348,12 +354,12 @@ function CardsPage() {
 
         {/* Side Menu for Buttons */}
         <div className={styles.buttonBox}>
-          <button
+        <button
             className={styles.circleButton}
-            onClick={() => alert("Create a new card")}
+            onClick={handleCreateCardClick}
           >
             +
-          </button>
+        </button>
 
           <button
             className={`${styles.circleButton} ${styles.editButton}`}

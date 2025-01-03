@@ -68,17 +68,27 @@ def https_redirect():
             return redirect(url, code=code)
 
 
+# @app.after_request
+# def inject_csrf_token(response):
+#     response.set_cookie(
+#         'csrf_token',
+#         generate_csrf(),
+#         secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
+#         samesite='Strict' if os.environ.get(
+#             'FLASK_ENV') == 'production' else None,
+#         httponly=True)
+#     return response
+
 @app.after_request
 def inject_csrf_token(response):
     response.set_cookie(
         'csrf_token',
         generate_csrf(),
-        secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
-        samesite='Strict' if os.environ.get(
-            'FLASK_ENV') == 'production' else None,
-        httponly=True)
+        secure=False,  # Set to True in production with HTTPS
+        samesite=None,  # Allow cross-origin requests
+        httponly=False  # Make it accessible in JavaScript
+    )
     return response
-
 
 @app.route("/api/docs")
 def api_help():
