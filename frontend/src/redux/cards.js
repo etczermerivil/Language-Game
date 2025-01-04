@@ -63,25 +63,25 @@ export const thunkCreateCard = (cardData) => async (dispatch) => {
   }
 };
 
+// Thunk to delete a card
 export const thunkDeleteCard = (cardId) => async (dispatch) => {
-  const response = await fetch(`/api/cards/${cardId}`, {
-    method: "DELETE",
-  });
+  try {
+    const response = await fetch(`/api/cards/${cardId}`, {
+      method: "DELETE",
+    });
 
-  if (response.ok) {
-    dispatch(removeCard(cardId));
-    return null;
-  } else {
-    const errors = await response.json();
-    return errors;
+    if (response.ok) {
+      dispatch({ type: "DELETE_CARD", payload: cardId });
+      return null; // Return null on success
+    } else {
+      const errors = await response.json();
+      return errors;
+    }
+  } catch (error) {
+    console.error("Error deleting card:", error);
+    return { error: "Something went wrong. Please try again." };
   }
 };
-
-const removeCard = (cardId) => ({
-  type: "REMOVE_CARD",
-  cardId,
-});
-
 
 // Initial State
 const initialState = {

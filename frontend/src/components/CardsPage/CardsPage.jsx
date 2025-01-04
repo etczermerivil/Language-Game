@@ -12,6 +12,7 @@ import { useModal } from "../../context/Modal";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMinus, faPencil } from '@fortawesome/free-solid-svg-icons';
 import { useRef } from "react";
+import DeleteCardModal from "../DeleteCardModal/DeleteCardModal";
 
 
 import ParticlesBackground from "../ParticlesBackground/ParticlesBackground";
@@ -48,8 +49,6 @@ function CardsPage() {
   const swiperRef = useRef(null);
 
 // Edit Card
-
-
 const updateCard = (updatedCard) => {
   console.log("Updated card:", updatedCard); // Log the updated card
   setCards((prevCards) =>
@@ -58,7 +57,6 @@ const updateCard = (updatedCard) => {
     )
   );
 };
-
 
 const handleEditCardClick = () => {
   const swiper = swiperRef.current; // Access Swiper instance
@@ -70,6 +68,22 @@ const handleEditCardClick = () => {
       <EditCardModal card={activeCard} updateCard={updateCard} /> // Pass updateCard
     );
     setModalVisible(true); // Open the modal
+  }
+};
+
+//Delete
+const handleDeleteCardClick = () => {
+  const swiper = swiperRef.current;
+  const activeIndex = swiper?.realIndex;
+  const activeCard = cards[activeIndex];
+
+  if (activeCard) {
+    setModalContent(
+      <DeleteCardModal cardId={activeCard.id} cardName={activeCard.word_text} />
+    );
+    setModalVisible(true);
+  } else {
+    console.error("No active card selected for deletion.");
   }
 };
 
@@ -86,6 +100,7 @@ const handleEditCardClick = () => {
   //   setCards(reduxCards); // Initialize local state with global state
   // }, [reduxCards]);
 
+  //Create
   const handleCreateCardClick = () => {
     setModalContent(<CreateCardModal />);
     setModalVisible(true);
@@ -242,11 +257,13 @@ const handleEditCardClick = () => {
           </button>
 
           <button
-            className={`${styles.circleButton} ${styles.deleteButton}`}
-            onClick={() => alert("Delete a card")}
+          className={`${styles.circleButton} ${styles.deleteButton}`}
+          onClick={handleDeleteCardClick}
           >
             <FontAwesomeIcon icon={faMinus} />
           </button>
+
+
         </div>
       </div>
     </div>
