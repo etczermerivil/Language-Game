@@ -1,13 +1,14 @@
-
 import { useState } from 'react';
+import { useModal } from '../../context/Modal';
 
-// import './AddEditColorModal.module.css';
 
-const AddEditColorModal = ({ part, onSubmit, onClose }) => {
+const AddEditColorModal = ({ part, onSubmit, onClose, onDelete }) => {
   const [name, setName] = useState(part ? part.name : '');
   const [colorCode, setColorCode] = useState(part ? part.color_code : '');
+  const { closeModal } = useModal();
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const updatedPart = { ...part, name, color_code: colorCode };
     fetch(`/api/colors/${part ? part.id : ''}`, {
       method: part ? 'PUT' : 'POST',
@@ -17,26 +18,71 @@ const AddEditColorModal = ({ part, onSubmit, onClose }) => {
       .then((res) => res.json())
       .then((data) => {
         onSubmit(data);
+        closeModal(); // Close the modal after submission
       })
       .catch((err) => console.error(err));
   };
 
+  const handleDelete = () => {
+    if (window.confirm(`Are you sure you want to delete "${part.name}"?`)) {
+      fetch(`/api/colors/${part.id}`, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      })
+        .then((res) => res.json())
+        .then(() => {
+          onDelete(part.id);
+          closeModal(); // Close the modal after deletion
+        })
+        .catch((err) => console.error(err));
+    }
+  };
+
   return (
-    <div className="modal">
-      <h2>{part ? 'Edit Part of Speech' : 'Add Part of Speech'}</h2>
-      <input
-        type="text"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        placeholder="Name"
-      />
-      <input
-        type="color"
-        value={colorCode}
-        onChange={(e) => setColorCode(e.target.value)}
-      />
-      <button onClick={handleSubmit}>{part ? 'Save Changes' : 'Add'}</button>
-      <button onClick={onClose}>Cancel</button>
+    <div id="modal">
+      <div id="modal-background" onClick={onClose}></div>
+      <div id="modal-content">
+        <h1>{part ? 'Edit Part of Speech' : 'Add Part of Speech'}</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="input-group">
+            <span className="input-icon">📝</span>
+            <input
+              type="text"
+              className="input-field"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+              required
+            />
+          </div>
+          <div className="input-group">
+            <span className="input-icon">🎨</span>
+            <input
+              type="color"
+              className="input-field"
+              value={colorCode}
+              onChange={(e) => setColorCode(e.target.value)}
+              placeholder="Color"
+              required
+            />
+          </div>
+          <div className="button-group">
+            <button type="submit">Save Changes</button>
+            {part && (
+              <button
+                type="button"
+                className="delete-modal-button--red"
+                onClick={handleDelete}
+              >
+                Delete Color
+              </button>
+            )}
+            <button type="button" onClick={onClose}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
