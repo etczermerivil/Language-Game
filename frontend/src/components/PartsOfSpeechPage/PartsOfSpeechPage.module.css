@@ -1,188 +1,157 @@
-
 .container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    height: 100vh;
-    align-items: center;
-    justify-content: center;
-    box-sizing: border-box;
-    padding: 0;
-    margin: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
 
-    position: relative;
+.particlesBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.titleBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  z-index: 1;
+}
+
+.title {
+  margin: none;
+  padding: none;
+  font-size: 35px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.partsBox {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+  padding: 20px;
+  overflow-y: auto;
+  overflow-x: auto;
+  box-sizing: border-box;
+  z-index: 1;
+  background-color: transparent;
+
+}
+
+
+.partsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  row-gap: 30px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 700px;
+}
+
+.partContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.partBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+.partBox:hover {
+  animation: glow 1s ease-in-out infinite;
+  transform: translateY(-2px);
+}
+
+.addCircleButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #363636, #575555);
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+  border: none;
+  animation: pickMe 5s ease-in-out infinite;
+}
+
+.addCircleButton:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes glow {
+  0% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   }
-
-  .particlesBackground {
-    position: fixed; /* Ensures full-screen background */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 0;
-    pointer-events: none;
+  50% {
+    box-shadow: 0 0 30px rgba(255, 255, 255, 0.75);
   }
-
-  .titleBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* background-color: #222; */
-    background-color: transparent;
-    color: white;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    overflow: hidden;
-    z-index: 1;
-
+  100% {
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
   }
+}
 
-  /* Title Text */
-  .title {
-    font-size: 2rem;
-    line-height: 1.5;
+@keyframes pickMe {
+  0%, 90% {
+    transform: translateY(0); /* Rest position for the pause */
   }
-
-  .PartsPage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    box-sizing: border-box;
+  10%, 20%, 30% {
+    transform: translateY(-8px); /* Quick jump upward */
   }
+  15%, 25%, 35% {
+    transform: translateY(0); /* Back down */
+  }
+}
 
+
+@media (max-width: 768px) {
   .partsGrid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
-    gap: 30px; /* Space between items */
-    justify-content: center; /* Centers the grid horizontally */
-    align-items: center; /* Aligns items in each row */
+    row-gap: 15px; /* Smaller row spacing for smaller screens */
   }
+}
 
-
-  .partContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 5px;
+@media (min-width: 769px) {
+  .partsGrid {
+    row-gap: 40px; /* Larger row spacing for larger screens */
   }
-
-  .partsBox {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 30px;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin: 0;
-    box-sizing: border-box;
-    background-color: #222;
-  }
-
-
-
-  .partBox {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s ease;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Initial subtle glow */
-  }
-
-  /* Hover effect with glow animation */
-  .partBox:hover {
-    animation: glow 1s ease-in-out infinite;
-    transform: translateY(-2px); /* Lift effect on hover */
-  }
-
-  .partBox::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: inherit; /* Use the same background color as the circle */
-    border-radius: inherit;
-    filter: blur(10px);
-    opacity: 0.75;
-    z-index: -1;
-    transition: all 0.3s ease-in-out;
-  }
-
-  .partBox:hover::before {
-    filter: blur(20px);
-    opacity: 1;
-  }
-
-
-
-
-  /* Glow Animation */
-  @keyframes glow {
-    0% {
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
-    50% {
-      box-shadow: 0 0 30px rgba(255, 255, 255, 0.75);
-    }
-    100% {
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
-    }
-  }
-
-  .addCircleButton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, #363636, #575555); /* Grey gradient */
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Subtle glow */
-    transition: all 0.3s ease;
-    border: none;
-    animation: pickMe 5s ease-in-out infinite;
-  }
-
-  .addCircleButton:hover {
-    transform: translateY(-2px); /* Lift effect on hover */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow on hover */
-  }
-
-  .addCircleButton:focus {
-    outline: none;
-    animation: pulsate 1.5s infinite; /* Pulsating glow animation */
-  }
-
-  @keyframes pickMe {
-    0%, 90% {
-      transform: translateY(0); /* Rest position for the pause */
-    }
-    10%, 20%, 30% {
-      transform: translateY(-8px); /* Quick jump upward */
-    }
-    15%, 25%, 35% {
-      transform: translateY(0); /* Back down */
-    }
-  }
+}

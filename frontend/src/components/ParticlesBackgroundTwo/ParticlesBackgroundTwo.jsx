@@ -1,92 +1,86 @@
+import { useCallback } from "react";
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 
 const NewParticlesBackground = () => {
-    const particlesInit = async (main) => {
-        // Load tsparticles engine
-        await loadFull(main);
-    };
+  const particlesInit = useCallback(async (engine) => {
+    await loadFull(engine); // Ensures tsparticles engine is loaded
+  }, []);
 
-    const particlesOptions = {
-        fullScreen: { enable: true, zIndex: -1 }, // Full-screen background
-        background: {
-            color: {
-                value: "#222", // Background color
-            },
+  const particlesOptions = {
+    fullScreen: { enable: true, zIndex: -1 }, // Particles cover the full background
+    background: {
+      color: { value: "#111" }, // Match desired background color
+    },
+    particles: {
+      number: {
+        value: 250, // Increase particle count
+        density: { enable: true, value_area: 800 },
+      },
+      color: { value: ["#FFFFFF"] },
+      shape: { type: "circle" }, // Keep one definition of "shape"
+      opacity: {
+        value: 0.5, // Set default opacity for circles
+        random: true, // Allow random opacity values
+        animation: {
+          enable: true, // Enable opacity animation
+          speed: 2, // Speed of opacity animation
+          minimumValue: 0.1, // Minimum opacity value during animation
+          sync: false, // Animate independently for each circle
         },
-        particles: {
-            number: {
-                value: 100, // Number of particles
-                density: {
-                    enable: true,
-                    area: 800, // Density area for particles
-                },
-            },
-            color: {
-                value: "#ffffff", // Particle color
-            },
-            shape: {
-                type: "circle", // Circle-shaped particles
-            },
-            opacity: {
-                value: { min: 0.1, max: 0.5 }, // Random opacity
-                animation: {
-                    enable: true,
-                    speed: 1,
-                    minimumValue: 0.1,
-                },
-            },
-            size: {
-                value: { min: 1, max: 10 }, // Random size
-                animation: {
-                    enable: true,
-                    speed: 10,
-                    minimumValue: 1,
-                },
-            },
-            move: {
-                enable: true,
-                speed: 2,
-                direction: "none", // No predefined direction
-                outModes: {
-                    default: "out",
-                },
-                random: false, // Disable random movement for controlled behavior
-                straight: false, // Smooth movement
-            },
+      },
+      size: {
+        value: 7,
+        random: true,
+      },
+      move: {
+        enable: true,
+        speed: 2,
+        direction: "bottom",
+        random: false,
+        straight: false,
+        outModes: { default: "out" },
+        trail: {
+          enable: true,
+          length: 10, // Length of the trail
+          fillColor: "#000000", // Background color for the trail
         },
-        interactivity: {
-            detectsOn: "canvas", // Detects interaction within the canvas
-            events: {
-                onHover: {
-                    enable: true,
-                    mode: "repulse", // Repulse effect on hover
-                },
-                onClick: {
-                    enable: true,
-                    mode: "push", // Add particles on click
-                },
-            },
-            modes: {
-                repulse: {
-                    distance: 100, // Distance for repulsion
-                    duration: 0.4, // Duration of the effect
-                },
-                push: {
-                    quantity: 4, // Number of particles added on click
-                },
-                grab: {
-                    distance: 200, // Grab effect radius
-                    links: {
-                        opacity: 0.5, // Opacity of link lines (set to 0 to hide)
-                    },
-                },
-            },
+      },
+      links: {
+        enable: true, // Enable links between particles
+        distance: 150, // Maximum link distance
+        color: "#ffffff",
+        opacity: 0.1,
+      },
+    },
+    interactivity: {
+      detectsOn: "window", // Ensure interaction across the entire window
+      events: {
+        onHover: {
+          enable: true, // Enable hover interactions
+          mode: "grab", // Use "grab" mode
         },
-        detectRetina: true, // Adjust for high-DPI screens
-    };
+        onClick: {
+          enable: true, // Enable click interactions
+          mode: "push", // Add particles on click
+        },
+      },
+      modes: {
+        grab: {
+          distance: 200, // Interaction distance
+          links: {
+            opacity: 0.5, // Opacity of the grab effect
+          },
+        },
+        push: {
+          quantity: 4, // Number of particles added on click
+        },
+      },
+    },
+    detectRetina: true,
+  };
 
-    return <Particles id="tsparticles" init={particlesInit} options={particlesOptions} />;
+  return <Particles id="tsparticles" init={particlesInit} options={particlesOptions} />;
 };
 
 export default NewParticlesBackground;
