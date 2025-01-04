@@ -6,9 +6,13 @@
     align-items: center;
     justify-content: center;
     gap: 20px;
-    padding: 20px;
+    /* padding: 20px; */
     box-sizing: border-box;
+    padding:0px;
+    margin:0px;
   }
+
+
 
   .titleBox {
     display: flex;
@@ -16,12 +20,12 @@
     align-items: center; /* Center vertically */
     background-color: #222; /* Dark background for the box */
     color: white;
-    padding: 20px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    height: 100%; /* Stretches to take up the entire column height */
-    width: 100%; /* Ensures the title box takes up the left column */
+    height: 100%;
+    width: 100%;
     text-align: center;
+    padding: 0;
   }
 
   /* Title Text */
@@ -60,13 +64,16 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     gap: 30px;
-    justify-content: center;
-    align-items: start;
+    justify-content: center; /* Center the grid horizontally */
+    align-items: center; /* Vertically center items */
     width: 100%;
-    padding: 20px;
+    height: 100%; /* Full height of the parent container */
+    margin: 0; /* Remove margin causing gaps */
     box-sizing: border-box;
+    background-color: #222; /* Desired background color */
+    /* border-radius: 10px; */
+  }
 
-}
 
 
   .partBox {
