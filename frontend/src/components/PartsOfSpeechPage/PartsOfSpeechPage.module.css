@@ -1,0 +1,126 @@
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .titleBox {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #222; /* Dark background for the box */
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    height: 100%; /* Stretches to take up the entire column height */
+    width: 100%; /* Ensures the title box takes up the left column */
+    text-align: center;
+  }
+
+  /* Title Text */
+  .title {
+    font-size: 2rem;
+    line-height: 1.5;
+  }
+  .PartsPage {
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+    min-height: 100vh; /* Ensures the page takes up the full viewport height */
+    padding: 20px;
+    box-sizing: border-box; /* Ensures padding doesn't affect centering */
+  }
+
+  .partsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* Responsive grid */
+    gap: 30px; /* Space between items */
+    justify-content: center; /* Centers the grid horizontally */
+    align-items: center; /* Aligns items in each row */
+  }
+
+
+  .partContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .partsBox {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+  .partBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5); /* Initial subtle glow */
+  }
+
+  /* Hover effect with glow animation */
+  .partBox:hover {
+    animation: glow 1s ease-in-out infinite;
+  }
+
+  .partBox::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit; /* Use the same background color as the circle */
+    border-radius: inherit;
+    filter: blur(10px);
+    opacity: 0.75;
+    z-index: -1;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .partBox:hover::before {
+    filter: blur(20px);
+    opacity: 1;
+  }
+
+
+
+
+  /* Glow Animation */
+  @keyframes glow {
+    0% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.75);
+    }
+    100% {
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    }
+  }

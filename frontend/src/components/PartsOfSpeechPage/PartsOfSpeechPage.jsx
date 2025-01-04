@@ -1,92 +1,65 @@
 import { useState, useEffect } from 'react';
-import AddEditColorModal from './AddEditColorModal';
-import DeleteColorModal from './DeleteColorModal';
-// import './PartsOfSpeechPage.module.css';
+import styles from './PartsOfSpeechPage.module.css';
+
+
+
+// import AddEditColorModal from './AddEditColorModal';
+// import DeleteColorModal from './DeleteColorModal';
 // import ParticlesBackground from "../ParticlesBackground/ParticlesBackground";
 // import { useModal } from "../../context/Modal";
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
-
-
-
 const PartsOfSpeechPage = () => {
-  const [partsOfSpeech, setPartsOfSpeech] = useState([]);
-  const [showAddEditModal, setShowAddEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [selectedPart, setSelectedPart] = useState(null);
+    const [partsOfSpeech, setPartsOfSpeech] = useState([]);
 
-  useEffect(() => {
-    fetch('/api/colors/')
-      .then((res) => res.json())
-      .then((data) => setPartsOfSpeech(data))
-      .catch((err) => console.error(err));
-  }, []);
+    useEffect(() => {
+      fetch('/api/colors/')
+        .then((res) => res.json())
+        .then((data) => setPartsOfSpeech(data))
+        .catch((err) => console.error(err));
+    }, []);
 
-  const handleAddEditClick = (part = null) => {
-    setSelectedPart(part);
-    setShowAddEditModal(true);
-  };
+    return (
+<div className={styles.container}>
+  {/* Left Section: Title */}
+  <div className={styles.titleBox}>
+    <h1 className={styles.title}>Parts Of Speech</h1>
+  </div>
 
-  const handleDeleteClick = (part) => {
-    setSelectedPart(part);
-    setShowDeleteModal(true);
-  };
-
-  const handleAddEditSubmit = (updatedPart) => {
-    if (selectedPart) {
-      setPartsOfSpeech((prev) =>
-        prev.map((p) => (p.id === updatedPart.id ? updatedPart : p))
-      );
-    } else {
-      setPartsOfSpeech((prev) => [...prev, updatedPart]);
-    }
-    setShowAddEditModal(false);
-  };
-
-  const handleDeleteSubmit = (deletedId) => {
-    setPartsOfSpeech((prev) => prev.filter((p) => p.id !== deletedId));
-    setShowDeleteModal(false);
-  };
-
-  return (
-    <div className="parts-page">
-      <h1>Parts of Speech & Colors</h1>
-      <div className="parts-grid">
-        {partsOfSpeech.map((part) => (
-          <div key={part.id} className="part-card">
-            <div
-              className="color-swatch"
-              style={{ backgroundColor: part.color_code }}
-            ></div>
-            <h3>{part.name}</h3>
-            <button onClick={() => handleAddEditClick(part)}>Edit</button>
-            <button onClick={() => handleDeleteClick(part)}>Delete</button>
+  {/* Right Section: Parts of Speech */}
+  <div className={styles.partsBox}>
+    <div className={styles.partsGrid}>
+      {partsOfSpeech.map((part) => (
+        <div key={part.id} className={styles.partContainer}>
+          <div
+            className={styles.partBox}
+            style={{ backgroundColor: part.color_code }}
+          >
+            {part.name}
           </div>
-        ))}
-      </div>
-      <button
-        className="add-button"
-        onClick={() => handleAddEditClick(null)}
-      >
-        Add
-      </button>
-      {showAddEditModal && (
-        <AddEditColorModal
-          part={selectedPart}
-          onSubmit={handleAddEditSubmit}
-          onClose={() => setShowAddEditModal(false)}
-        />
-      )}
-      {showDeleteModal && (
-        <DeleteColorModal
-          part={selectedPart}
-          onSubmit={handleDeleteSubmit}
-          onClose={() => setShowDeleteModal(false)}
-        />
-      )}
+          <div className={styles.buttonGroup}>
+          <button
+                className={`${styles.actionButton} ${styles.editButton}`}
+                onClick={() => console.log('Edit:', part.id)}
+                >
+                ✏️
+                </button>
+                <button
+                className={`${styles.actionButton} ${styles.deleteButton}`}
+                onClick={() => console.log('Delete:', part.id)}
+                >
+                ❌
+            </button>
+          </div>
+        </div>
+      ))}
     </div>
-  );
-};
+  </div>
+</div>
 
-export default PartsOfSpeechPage;
+
+    );
+  };
+
+  export default PartsOfSpeechPage;
