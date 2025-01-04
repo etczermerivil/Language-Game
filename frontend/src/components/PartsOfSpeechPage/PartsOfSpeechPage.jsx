@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import AddEditColorModal from "./AddEditColorModal";
 import styles from "./PartsOfSpeechPage.module.css";
+import NewParticlesBackground from "../ParticlesBackgroundTwo/ParticlesBackgroundTwo";
 
 const PartsOfSpeechPage = () => {
   const [partsOfSpeech, setPartsOfSpeech] = useState([]);
@@ -65,8 +66,14 @@ const PartsOfSpeechPage = () => {
 
   return (
     <div className={styles.container}>
-      {/* Left Section: Title */}
-      <div className={styles.titleBox}>
+
+      <div className={styles.particlesBackground}>
+        <NewParticlesBackground />
+      </div>
+
+    {/* Left Section: Title */}
+    <div className={styles.titleBox}>
+
         <h1 className={styles.title}>Parts Of Speech</h1>
       </div>
 
