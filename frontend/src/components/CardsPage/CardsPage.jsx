@@ -71,21 +71,34 @@ const handleEditCardClick = () => {
   }
 };
 
+
+
 //Delete
+
+const removeCard = (deletedCardId) => {
+  setCards((prevCards) => prevCards.filter((card) => card.id !== deletedCardId));
+};
+
 const handleDeleteCardClick = () => {
-  const swiper = swiperRef.current;
-  const activeIndex = swiper?.realIndex;
-  const activeCard = cards[activeIndex];
+  const swiper = swiperRef.current; // Access Swiper instance
+  const activeIndex = swiper?.realIndex; // Get the current active slide index
+  const activeCard = cards[activeIndex]; // Retrieve the active card
 
   if (activeCard) {
     setModalContent(
-      <DeleteCardModal cardId={activeCard.id} cardName={activeCard.word_text} />
+      <DeleteCardModal
+        cardId={activeCard.id}
+        cardName={activeCard.word_text}
+        removeCard={removeCard} // Pass removeCard to the modal
+      />
     );
-    setModalVisible(true);
   } else {
     console.error("No active card selected for deletion.");
   }
 };
+
+
+
 
 
   // Fetch cards from the backend
