@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { thunkEditCard } from "../../redux/cards";
 import { useModal } from "../../context/Modal";
-import styles from "./EditCardModal.module.css"; // Import the CSS module
+
 
 function EditCardModal({ card, updateCard }) {
   const dispatch = useDispatch();
@@ -40,80 +40,82 @@ function EditCardModal({ card, updateCard }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={styles.formContainer}>
-      <h1 className={styles.heading}>Edit Card</h1>
+      <form onSubmit={handleSubmit} className="edit-card-modal">
+        <h1>Edit Card</h1>
 
-      {/* Word */}
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Word:</label>
-        <input
-          type="text"
-          value={wordText}
-          onChange={(e) => setWordText(e.target.value)}
-          className={styles.inputField}
-          required
-        />
-        {errors.word_text && <p className={styles.errorText}>{errors.word_text}</p>}
-      </div>
+        {/* Word */}
+        <div className="input-group">
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Word"
+            value={wordText}
+            onChange={(e) => setWordText(e.target.value)}
+            required
+          />
+          {errors.word_text && <p className="error-text">{errors.word_text}</p>}
+        </div>
 
-      {/* Pronunciation */}
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Pronunciation:</label>
-        <input
-          type="text"
-          value={pronunciation}
-          onChange={(e) => setPronunciation(e.target.value)}
-          className={styles.inputField}
-        />
-      </div>
+        {/* Pronunciation */}
+        <div className="input-group">
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Pronunciation"
+            value={pronunciation}
+            onChange={(e) => setPronunciation(e.target.value)}
+          />
+        </div>
 
-      {/* Part of Speech */}
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Part of Speech:</label>
-        <input
-          type="text"
-          value={partOfSpeech}
-          onChange={(e) => setPartOfSpeech(e.target.value)}
-          className={styles.inputField}
-          required
-        />
-      </div>
+        {/* Part of Speech */}
+        <div className="input-group">
+          <input
+            type="text"
+            className="input-field"
+            placeholder="Part of Speech"
+            value={partOfSpeech}
+            onChange={(e) => setPartOfSpeech(e.target.value)}
+            required
+          />
+        </div>
 
-      {/* Definition */}
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Definition:</label>
-        <textarea
-          value={definition}
-          onChange={(e) => setDefinition(e.target.value)}
-          className={styles.textareaField}
-          required
-        />
-        {errors.definition && <p className={styles.errorText}>{errors.definition}</p>}
-      </div>
+        {/* Definition */}
+        <div className="input-group">
+          <textarea
+            className="textarea-field"
+            placeholder="Definition"
+            value={definition}
+            onChange={(e) => setDefinition(e.target.value)}
+            required
+          />
+          {errors.definition && <p className="error-text">{errors.definition}</p>}
+        </div>
 
-      {/* Example Sentence */}
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Example Sentence:</label>
-        <textarea
-          value={exampleSentence}
-          onChange={(e) => setExampleSentence(e.target.value)}
-          className={styles.textareaField}
-        />
-      </div>
+        {/* Example Sentence */}
+        <div className="input-group">
+          <textarea
+            className="textarea-field"
+            placeholder="Example Sentence"
+            value={exampleSentence}
+            onChange={(e) => setExampleSentence(e.target.value)}
+          />
+        </div>
 
-      {/* Example Translation */}
-      <div className={styles.inputGroup}>
-        <label className={styles.label}>Example Translation:</label>
-        <textarea
-          value={exampleTranslation}
-          onChange={(e) => setExampleTranslation(e.target.value)}
-          className={styles.textareaField}
-        />
-      </div>
+        {/* Example Translation */}
+        <div className="input-group">
+          <textarea
+            className="textarea-field"
+            placeholder="Example Translation"
+            value={exampleTranslation}
+            onChange={(e) => setExampleTranslation(e.target.value)}
+          />
+        </div>
 
-      <button type="submit" className={styles.submitButton}>Save Changes</button>
-    </form>
-  );
+        <button type="submit" className="form-button form-button--green">
+          Save Changes
+        </button>
+      </form>
+    );
 }
 
 export default EditCardModal;

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { thunkDeleteCard } from "../../redux/cards";
 import { useModal } from "../../context/Modal";
-import styles from "./DeleteCardModal.module.css"; // Import the CSS module
+
 
 function DeleteCardModal({ cardId, cardName }) {
   const dispatch = useDispatch();
@@ -18,21 +18,30 @@ function DeleteCardModal({ cardId, cardName }) {
   };
 
   return (
-    <div id="delete-modal" className={styles.modalContainer}>
-      <h2 className={styles.modalTitle}>Delete Card</h2>
-      <p className={styles.modalText}>
-        Are you sure you want to delete the card{" "}
-        <span className={styles.cardName}>&quot;{cardName}&quot;</span>
-      </p>
-      <div className={styles.buttonGroup}>
-        <button className={styles.cancelButton} onClick={closeModal}>
-          Cancel
-        </button>
-        <button className={styles.confirmButton} onClick={handleDelete}>
-          Delete
-        </button>
-      </div>
+<div className="delete-modal">
+  <div className="delete-modal-content">
+    <h2 className="delete-modal-title">Delete Card</h2>
+    <p className="delete-modal-text">
+      Are you sure you want to delete the card{" "}
+      <span className="delete-modal-card-name">&quot;{cardName}&quot;</span>?
+    </p>
+    <div className="delete-modal-button-group">
+      <button
+        className="delete-modal-button delete-modal-button--gray"
+        onClick={closeModal}
+      >
+        Cancel
+      </button>
+      <button
+        className="delete-modal-button delete-modal-button--red"
+        onClick={handleDelete}
+      >
+        Delete
+      </button>
     </div>
+  </div>
+</div>
+
   );
 }
 
