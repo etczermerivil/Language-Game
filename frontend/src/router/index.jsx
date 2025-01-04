@@ -5,6 +5,7 @@ import DecksPage from '../components/DecksPage/DecksPage';
 import CardsPage from '../components/CardsPage/CardsPage';
 import LandingPage from'../components/LandingPage/LandingPage'
 import Layout from './Layout';
+import PartsOfSpeechPage from '../components/PartsOfSpeechPage/PartsOfSpeechPage';
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ export const router = createBrowserRouter([
       {
         path: "cards",
         element: <CardsPage />,
+      },
+      {
+        path: "colors", // Add the path
+        element: <PartsOfSpeechPage />, // Link the new page component
       },
     ],
   },
