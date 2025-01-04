@@ -23,8 +23,8 @@ function Navigation() {
 
           {/* NEW NAV ITEMS */}
           <li className="nav-item">
-            <NavLink to="/color-schemes" className="nav-link">
-              Color Schemes
+            <NavLink to="/colors" className="nav-link">
+              Parts Of Speech
             </NavLink>
           </li>
           <li className="nav-item">
