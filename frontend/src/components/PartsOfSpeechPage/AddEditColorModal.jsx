@@ -23,20 +23,6 @@ const AddEditColorModal = ({ part, onSubmit, onClose, onDelete }) => {
       .catch((err) => console.error(err));
   };
 
-  const handleDelete = () => {
-    if (window.confirm(`Are you sure you want to delete "${part.name}"?`)) {
-      fetch(`/api/colors/${part.id}`, {
-        method: 'DELETE',
-        headers: { 'Content-Type': 'application/json' },
-      })
-        .then((res) => res.json())
-        .then(() => {
-          onDelete(part.id);
-          closeModal(); // Close the modal after deletion
-        })
-        .catch((err) => console.error(err));
-    }
-  };
 
   return (
     <div id="modal">
@@ -69,13 +55,17 @@ const AddEditColorModal = ({ part, onSubmit, onClose, onDelete }) => {
           <div className="button-group">
             <button type="submit">Save Changes</button>
             {part && (
-              <button
-                type="button"
-                className="delete-modal-button--red"
-                onClick={handleDelete}
-              >
-                Delete Color
-              </button>
+            <button
+              className="delete-modal-button--red"
+              onClick={() => {
+                if (window.confirm(`Are you sure you want to delete "${part.name}"?`)) {
+                  onDelete(part.id);
+                }
+              }}
+            >
+              Delete Color
+          </button>
+
             )}
             <button type="button" onClick={onClose}>
               Cancel

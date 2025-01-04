@@ -53,6 +53,7 @@
     align-items: center;
     justify-content: center;
     gap: 10px;
+    margin-bottom: 5px;
   }
 
   .partsBox {
@@ -64,6 +65,7 @@
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
+
 }
 
 
@@ -87,6 +89,7 @@
   /* Hover effect with glow animation */
   .partBox:hover {
     animation: glow 1s ease-in-out infinite;
+    transform: translateY(-2px); /* Lift effect on hover */
   }
 
   .partBox::before {
@@ -129,18 +132,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 75px;
-    height: 75px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
-    background: linear-gradient(135deg, #666666, #888888); /* Grey gradient */
+    background: linear-gradient(135deg, #363636, #575555); /* Grey gradient */
     color: white;
-    font-size: 36px;
+    font-size: 30px;
     font-weight: bold;
     text-align: center;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2); /* Subtle glow */
     transition: all 0.3s ease;
     border: none;
+    animation: pickMe 5s ease-in-out infinite;
   }
 
   .addCircleButton:hover {
@@ -151,4 +155,16 @@
   .addCircleButton:focus {
     outline: none;
     animation: pulsate 1.5s infinite; /* Pulsating glow animation */
+  }
+
+  @keyframes pickMe {
+    0%, 90% {
+      transform: translateY(0); /* Rest position for the pause */
+    }
+    10%, 20%, 30% {
+      transform: translateY(-8px); /* Quick jump upward */
+    }
+    15%, 25%, 35% {
+      transform: translateY(0); /* Back down */
+    }
   }

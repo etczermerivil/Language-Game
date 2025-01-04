@@ -39,6 +39,30 @@ const PartsOfSpeechPage = () => {
     closeModal();
   };
 
+  const handleDelete = (colorId) => {
+    fetch(`/api/colors/${colorId}`, {
+      method: "DELETE",
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error("Failed to delete color");
+        }
+        return res.json();
+      })
+      .then(() => {
+        // Remove the deleted color from the state
+        setPartsOfSpeech((prevParts) =>
+          prevParts.filter((part) => part.id !== colorId)
+        );
+        closeModal(); // Close the modal after deletion
+      })
+      .catch((err) => {
+        console.error("Failed to delete color:", err);
+      });
+  };
+
+
+
   return (
     <div className={styles.container}>
       {/* Left Section: Title */}
@@ -76,16 +100,18 @@ const PartsOfSpeechPage = () => {
         </div>
       </div>
 
-      {/* Modal for Adding or Editing */}
+      {/* Modal for Adding, Editing, or Deleting */}
       {isModalOpen && (
         <AddEditColorModal
           part={selectedPart}
           onSubmit={handleSubmit}
           onClose={closeModal}
+          onDelete={handleDelete} // Pass handleDelete as a prop to the modal
         />
       )}
     </div>
   );
+
 };
 
 export default PartsOfSpeechPage;
