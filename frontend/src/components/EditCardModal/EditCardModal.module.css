@@ -1,0 +1,98 @@
+.formContainer {
+  padding: 10px;
+  border-radius: 12px;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+  margin: auto;
+}
+
+
+.inputGroup:first-of-type {
+  margin: 0; /* Ensure the first input doesn't push the content down */
+}
+
+input,
+textarea {
+  box-sizing: border-box; /* Ensures consistent sizing */
+}
+
+
+
+/* .heading {
+  font-size: 1.8rem;
+  color: #fff;
+  text-align: center;
+} */
+
+.inputGroup {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #fff;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.inputField,
+.textareaField {
+  background: #2e2e2e;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 1rem;
+}
+
+.inputField:focus,
+.textareaField:focus {
+  outline: none;
+  border: 1px solid #232222;
+  box-shadow: 0 0 5px #232323;
+}
+
+.textareaField {
+  height: 80px;
+  resize: none;
+}
+
+.submitButton {
+  background: linear-gradient(135deg, #2e8b2e, #3cb33c);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.submitButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 5px rgba(0, 0, 0, 0.3);
+}
+
+.errorText {
+  color: #ff4c4c;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+/* Scrollbar styling */
+.formContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.formContainer::-webkit-scrollbar-thumb {
+  background: #4ae056;
+  border-radius: 4px;
+}
+
+.formContainer::-webkit-scrollbar-track {
+  background: #2e2e2e;
+}

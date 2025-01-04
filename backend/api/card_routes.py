@@ -120,6 +120,10 @@ def update_card(card_id):
     card.lemma = data.get('lemma', card.lemma)
     card.image_url = data.get('image_url', card.image_url)
     card.card_count = data.get('card_count', card.card_count)
+    card.definition = data.get('definition', card.definition)
+    card.pronunciation = data.get('pronunciation', card.pronunciation)  # Add this line
+    card.example_sentence = data.get('example_sentence', card.example_sentence)  # Add this line
+    card.example_translation = data.get('example_translation', card.example_translation)  # Add this line
 
     db.session.commit()
     return jsonify(card.to_dict()), 200

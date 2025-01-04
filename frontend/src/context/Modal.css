@@ -34,6 +34,8 @@
   width: 100vw; /* Full viewport width */
   height: 100vh; /* Full viewport height */
   z-index: 1000; /* High z-index to appear above all other content */
+  padding: 20px;
+  overflow-y: auto;
 }
 
 /* Modal content */
@@ -46,7 +48,9 @@
   width: 100%;
   z-index: 1001;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
-  transition: box-shadow 0.3s ease; /* Smooth transition for the glow */
+  transition: box-shadow 0.3s ease;
+  max-height: 80vh;
+
 }
 
 /* Semi-transparent background behind modal content */

@@ -2,6 +2,8 @@
 const ADD_CARD = "cards/ADD_CARD";
 const EDIT_CARD = "cards/EDIT_CARD";
 
+
+
 // Action Creators
 export const addCard = (card) => ({
   type: ADD_CARD,
@@ -13,6 +15,7 @@ export const editCard = (card) => ({
   payload: card,
 });
 
+
 // Thunk to Edit Card
 export const thunkEditCard = (cardData) => async (dispatch) => {
   const response = await fetch(`/api/cards/${cardData.id}`, {
@@ -20,19 +23,21 @@ export const thunkEditCard = (cardData) => async (dispatch) => {
     headers: {
       "Content-Type": "application/json",
     },
-    credentials: "include",
     body: JSON.stringify(cardData),
   });
 
   if (response.ok) {
     const updatedCard = await response.json();
+    console.log("Updated card from backend:", updatedCard); // Log backend response
     dispatch(editCard(updatedCard));
     return updatedCard;
   } else {
     const errors = await response.json();
-    return errors; // Return errors for the UI to handle
+    console.error("Backend errors:", errors);
+    return { errors };
   }
 };
+
 
 // Thunk to Create Card
 export const thunkCreateCard = (cardData) => async (dispatch) => {
@@ -57,6 +62,26 @@ export const thunkCreateCard = (cardData) => async (dispatch) => {
     return errorData; // Send errors back to the component
   }
 };
+
+export const thunkDeleteCard = (cardId) => async (dispatch) => {
+  const response = await fetch(`/api/cards/${cardId}`, {
+    method: "DELETE",
+  });
+
+  if (response.ok) {
+    dispatch(removeCard(cardId));
+    return null;
+  } else {
+    const errors = await response.json();
+    return errors;
+  }
+};
+
+const removeCard = (cardId) => ({
+  type: "REMOVE_CARD",
+  cardId,
+});
+
 
 // Initial State
 const initialState = {

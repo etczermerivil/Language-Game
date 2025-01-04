@@ -42,31 +42,36 @@ const partOfSpeechParticleColors = {
 function CardsPage() {
   // State to store fetched cards
   const [cards, setCards] = useState([]);
+
   const [activeColor, setActiveColor] = useState(partOfSpeechParticleColors.default);
   const { setModalContent, setModalVisible } = useModal();
   const swiperRef = useRef(null);
 
 // Edit Card
 
-  const handleEditCardClick = () => {
-    console.log("Edit button clicked");
 
-    const swiper = swiperRef.current; // Access the Swiper instance
-    console.log("Swiper instance from ref:", swiper);
+const updateCard = (updatedCard) => {
+  console.log("Updated card:", updatedCard); // Log the updated card
+  setCards((prevCards) =>
+    prevCards.map((card) =>
+      card.id === updatedCard.id ? updatedCard : card
+    )
+  );
+};
 
-    const activeIndex = swiper?.realIndex; // Get the current active slide index
-    console.log("Active index:", activeIndex);
 
-    const activeCard = cards[activeIndex]; // Retrieve the active card
-    console.log("Active card:", activeCard);
+const handleEditCardClick = () => {
+  const swiper = swiperRef.current; // Access Swiper instance
+  const activeIndex = swiper?.realIndex; // Get the current active slide index
+  const activeCard = cards[activeIndex]; // Retrieve the active card
 
-    if (activeCard) {
-      setModalContent(<EditCardModal card={activeCard} />);
-      setModalVisible(true);
-    } else {
-      console.error("No active card found");
-    }
-  };
+  if (activeCard) {
+    setModalContent(
+      <EditCardModal card={activeCard} updateCard={updateCard} /> // Pass updateCard
+    );
+    setModalVisible(true); // Open the modal
+  }
+};
 
 
   // Fetch cards from the backend
@@ -77,10 +82,16 @@ function CardsPage() {
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
+  // useEffect(() => {
+  //   setCards(reduxCards); // Initialize local state with global state
+  // }, [reduxCards]);
+
   const handleCreateCardClick = () => {
     setModalContent(<CreateCardModal />);
     setModalVisible(true);
   };
+
+
 
   const handleSlideChange = (swiper) => {
     const activeIndex = swiper.realIndex; // Get the correct slide index
