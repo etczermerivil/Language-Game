@@ -114,10 +114,26 @@
   transition: all 0.3s ease;
   border: none;
   animation: pickMe 5s ease-in-out infinite;
+
 }
 
 .addCircleButton:hover {
   transform: translateY(-2px);
+}
+
+/* Glow effect on hover */
+.addCircleButton:hover {
+  background: linear-gradient(135deg, #575555, #6f6f6f); /* Slightly lighter gradient */
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5); /* Brighter glow on hover */
+  transform: scale(1.1); /* Slightly enlarge the button */
+}
+
+
+/* Focused state for accessibility */
+.addCircleButton:focus {
+  outline: none;
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5); /* Stronger glow on focus */
+  animation: none; /* Stop pulsating to indicate focus */
 }
 
 @keyframes glow {
