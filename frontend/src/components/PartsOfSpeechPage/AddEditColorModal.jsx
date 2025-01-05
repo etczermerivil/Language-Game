@@ -7,9 +7,26 @@ const AddEditColorModal = ({ part, onSubmit, onClose, onDelete }) => {
   const [colorCode, setColorCode] = useState(part ? part.color_code : '');
   const { closeModal } = useModal();
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const updatedPart = { ...part, name, color_code: colorCode };
+  //   fetch(`/api/colors/${part ? part.id : ''}`, {
+  //     method: part ? 'PUT' : 'POST',
+  //     headers: { 'Content-Type': 'application/json' },
+  //     body: JSON.stringify(updatedPart),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       onSubmit(data);
+  //       closeModal(); // Close the modal after submission
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const updatedPart = { ...part, name, color_code: colorCode };
+    const updatedPart = { id: part?.id, name, color_code: colorCode };
+
     fetch(`/api/colors/${part ? part.id : ''}`, {
       method: part ? 'PUT' : 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -17,10 +34,11 @@ const AddEditColorModal = ({ part, onSubmit, onClose, onDelete }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        onSubmit(data);
-        closeModal(); // Close the modal after submission
+        console.log('Updated/Added Part:', data); // Log for debugging
+        onSubmit(data); // Pass the new or updated part back to parent
+        closeModal();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error('Error saving part of speech:', err));
   };
 
 

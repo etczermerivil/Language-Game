@@ -56,6 +56,7 @@ function CreateCardModal({ onCardCreated }) {
       example_translation: exampleTranslation.trim(), // Trim example translation input
     };
 
+    console.log("Part of Speech being sent:", partOfSpeech);
 
     const response = await dispatch(thunkCreateCard(cardData)); // Dispatch the thunk
 

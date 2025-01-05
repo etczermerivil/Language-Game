@@ -61,6 +61,8 @@ def create_card():
         # Fetch the related PartOfSpeech by name
         part_of_speech = PartOfSpeech.query.filter_by(name=data["part_of_speech"]).first()
 
+        # part_of_speech = PartOfSpeech.query.filter(PartOfSpeech.name.ilike(data["part_of_speech"])).first()
+
         # Check if PartOfSpeech exists
         if not part_of_speech:
             return jsonify({"error": f"Part of Speech '{data['part_of_speech']}' not found"}), 400

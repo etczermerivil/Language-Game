@@ -115,15 +115,34 @@ const handleDeleteCardClick = () => {
   //     .catch((error) => console.error('Error fetching data:', error));
   // }, []);
 
+  // useEffect(() => {
+  //   fetch('/api/cards')
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log('Fetched cards:', data); // Log the cards
+  //       setCards(data);
+  //     })
+  //     .catch((error) => console.error('Error fetching data:', error));
+  // }, []);
+
+
   useEffect(() => {
-    fetch('/api/cards')
+    fetch('/api/cards') // Replace with your actual API endpoint
       .then((response) => response.json())
       .then((data) => {
-        console.log('Fetched cards:', data); // Log the cards
         setCards(data);
+        setTimeout(() => {
+          const swiper = swiperRef.current;
+          if (swiper) {
+            swiper.update(); // Force Swiper to refresh and apply coverflow effect
+          }
+        }, 100); // Ensure Swiper updates after data is set
       })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
+
+
+
 
   //Create
   // const handleCreateCardClick = () => {
@@ -217,7 +236,7 @@ const handleDeleteCardClick = () => {
             }}
             navigation
             pagination={{ clickable: true }}
-            loop
+            loop={true}
             style={{
               height: "100%",
               width: "100%",

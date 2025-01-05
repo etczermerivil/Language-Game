@@ -18,10 +18,21 @@ const partOfSpeechColors = {
 };
 
 
+
+  // useEffect(() => {
+  //   fetch("/api/colors/")
+  //     .then((res) => res.json())
+  //     .then((data) => setPartsOfSpeech(data))
+  //     .catch((err) => console.error(err));
+  // }, []);
+
   useEffect(() => {
     fetch("/api/colors/")
       .then((res) => res.json())
-      .then((data) => setPartsOfSpeech(data))
+      .then((data) => {
+        console.log("Fetched partsOfSpeech:", data); // Debugging log
+        setPartsOfSpeech(data);
+      })
       .catch((err) => console.error(err));
   }, []);
 
@@ -34,6 +45,21 @@ const partOfSpeechColors = {
     setSelectedPart(null);
     setIsModalOpen(false);
   };
+
+  // const handleSubmit = (updatedPart) => {
+  //   if (selectedPart) {
+  //     // Editing an existing part
+  //     setPartsOfSpeech((prevParts) =>
+  //       prevParts.map((part) =>
+  //         part.id === updatedPart.id ? updatedPart : part
+  //       )
+  //     );
+  //   } else {
+  //     // Adding a new part
+  //     setPartsOfSpeech((prevParts) => [...prevParts, updatedPart]);
+  //   }
+  //   closeModal();
+  // };
 
   const handleSubmit = (updatedPart) => {
     if (selectedPart) {
@@ -49,6 +75,7 @@ const partOfSpeechColors = {
     }
     closeModal();
   };
+
 
   const handleDelete = (colorId) => {
     fetch(`/api/colors/${colorId}`, {
@@ -94,7 +121,11 @@ const partOfSpeechColors = {
               <div
                 className={`${styles.partBox} ${styles[part.name.toLowerCase()] || ""}`}
                 style={{
-                  background: partOfSpeechColors[part.name] || partOfSpeechColors.default,
+                  // background: partOfSpeechColors[part.name] || partOfSpeechColors.default,
+
+                    background: part.color_code || partOfSpeechColors.default,
+
+
                 }}
               >
                 {part.name}
