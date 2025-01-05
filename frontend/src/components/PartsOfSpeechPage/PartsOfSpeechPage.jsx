@@ -92,7 +92,7 @@ const partOfSpeechColors = {
               onClick={() => openModal(part)}
             >
               <div
-                className={styles.partBox}
+                className={`${styles.partBox} ${styles[part.name.toLowerCase()] || ""}`}
                 style={{
                   background: partOfSpeechColors[part.name] || partOfSpeechColors.default,
                 }}
@@ -123,6 +123,6 @@ const partOfSpeechColors = {
       )}
     </div>
   );
-};
+}
 
 export default PartsOfSpeechPage;

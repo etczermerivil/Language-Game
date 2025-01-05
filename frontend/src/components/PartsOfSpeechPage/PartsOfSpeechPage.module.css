@@ -38,6 +38,7 @@
   font-size: 35px;
   font-weight: 600;
   line-height: 1.5;
+  color: rgb(175, 164, 164);
 }
 
 .partsBox {
@@ -154,4 +155,68 @@
   .partsGrid {
     row-gap: 40px; /* Larger row spacing for larger screens */
   }
+}
+
+@keyframes nounGlow {
+  0% {
+    box-shadow: 0 0 15px #0066FF;
+  }
+  50% {
+    box-shadow: 0 0 30px #1F78FF;
+  }
+  100% {
+    box-shadow: 0 0 15px #0066FF;
+  }
+}
+
+@keyframes verbGlow {
+  0% {
+    box-shadow: 0 0 15px #FF0000;
+  }
+  50% {
+    box-shadow: 0 0 30px #FF5000;
+  }
+  100% {
+    box-shadow: 0 0 15px #FF0000;
+  }
+}
+
+@keyframes adjectiveGlow {
+  0% {
+    box-shadow: 0 0 15px #5F00B8;
+  }
+  50% {
+    box-shadow: 0 0 30px #931FFF;
+  }
+  100% {
+    box-shadow: 0 0 15px #5F00B8;
+  }
+}
+
+@keyframes articleGlow {
+  0% {
+    box-shadow: 0 0 15px #FFD500;
+  }
+  50% {
+    box-shadow: 0 0 30px #FFE208;
+  }
+  100% {
+    box-shadow: 0 0 15px #FFD500;
+  }
+}
+
+.partBox.noun {
+  animation: nounGlow 2s infinite ease-in-out;
+}
+
+.partBox.verb {
+  animation: verbGlow 2s infinite ease-in-out;
+}
+
+.partBox.adjective {
+  animation: adjectiveGlow 2s infinite ease-in-out;
+}
+
+.partBox.article {
+  animation: articleGlow 2s infinite ease-in-out;
 }
