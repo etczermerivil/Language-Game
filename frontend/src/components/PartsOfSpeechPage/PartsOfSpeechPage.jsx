@@ -8,6 +8,16 @@ const PartsOfSpeechPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedPart, setSelectedPart] = useState(null); // Tracks the part being edited or null for adding
 
+  // Define gradients for parts of speech
+const partOfSpeechColors = {
+  Noun: "linear-gradient(225deg, #0066FF, #1F78FF)",
+  Verb: "linear-gradient(225deg, #FF0000, #FF5000)",
+  Adjective: "linear-gradient(225deg, #5F00B8, #931FFF)",
+  Article: "linear-gradient(225deg, #FFD500, #FFE208)",
+  default: "linear-gradient(225deg, #ccc, #f2f2f2)",
+};
+
+
   useEffect(() => {
     fetch("/api/colors/")
       .then((res) => res.json())
@@ -63,7 +73,6 @@ const PartsOfSpeechPage = () => {
   };
 
 
-
   return (
     <div className={styles.container}>
       <div className={styles.particlesBackground}>
@@ -84,7 +93,9 @@ const PartsOfSpeechPage = () => {
             >
               <div
                 className={styles.partBox}
-                style={{ backgroundColor: part.color_code }}
+                style={{
+                  background: partOfSpeechColors[part.name] || partOfSpeechColors.default,
+                }}
               >
                 {part.name}
               </div>

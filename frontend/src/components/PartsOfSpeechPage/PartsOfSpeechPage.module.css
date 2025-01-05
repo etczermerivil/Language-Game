@@ -58,8 +58,8 @@
 .partsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 4px;
-  row-gap: 30px;
+  gap: 5px;
+  row-gap: 25px;
   justify-content: center;
   align-items: center;
   width: 100%;
@@ -83,12 +83,12 @@
   border-radius: 50%;
   color: white;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 550;
   text-align: center;
   position: relative;
   z-index: 1;
   transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 15px rgba(24, 24, 24, 0.958);
 }
 
 .partBox:hover {
@@ -109,7 +109,7 @@
   font-weight: bold;
   text-align: center;
   cursor: pointer;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 15px rgba(40, 40, 40, 0.158);
   transition: all 0.3s ease;
   border: none;
   animation: pickMe 5s ease-in-out infinite;
