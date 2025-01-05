@@ -40,6 +40,30 @@ export const thunkEditCard = (cardData) => async (dispatch) => {
 
 
 // Thunk to Create Card
+// export const thunkCreateCard = (cardData) => async (dispatch) => {
+//   const csrfToken = document.cookie.match(/csrf_token=([^;]+)/)?.[1];
+
+//   const response = await fetch("/api/cards", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       "X-CSRFToken": csrfToken,
+//     },
+//     credentials: "include",
+//     body: JSON.stringify(cardData),
+//   });
+
+//   if (response.ok) {
+//     const newCard = await response.json();
+//     dispatch(addCard(newCard));
+//     return null; // Indicate success
+//   } else {
+//     const errorData = await response.json();
+//     return errorData;
+//   }
+// };
+
+
 export const thunkCreateCard = (cardData) => async (dispatch) => {
   const csrfToken = document.cookie.match(/csrf_token=([^;]+)/)?.[1];
 
@@ -56,12 +80,13 @@ export const thunkCreateCard = (cardData) => async (dispatch) => {
   if (response.ok) {
     const newCard = await response.json();
     dispatch(addCard(newCard));
-    return null; // Indicate success
+    return { card: newCard }; // Return the new card on success
   } else {
     const errorData = await response.json();
-    return errorData; // Send errors back to the component
+    return { errors: errorData.errors }; // Always return an errors object
   }
 };
+
 
 // Thunk to delete a card
 export const thunkDeleteCard = (cardId) => async (dispatch) => {

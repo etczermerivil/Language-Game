@@ -4,41 +4,77 @@ import { thunkCreateCard } from "../../redux/cards";
 import { useModal } from "../../context/Modal";
 import "./CreateCardModal.css";
 
-function CreateCardModal() {
+function CreateCardModal({ onCardCreated }) {
+  console.log('onCardCreated:', onCardCreated);
+
   const dispatch = useDispatch();
   const { closeModal } = useModal();
-  const [wordText, setWordText] = useState("");
-  const [ipa, setIpa] = useState("");
-  const [language, setLanguage] = useState("");
-  const [partOfSpeech, setPartOfSpeech] = useState("");
-  const [lemma, setLemma] = useState("");
-  const [definition, setDefinition] = useState("");
+
+  // State for form fields
+  const [wordText, setWordText] = useState(""); // Word text
+  const [pronunciation, setPronunciation] = useState(""); // Pronunciation
+  const [language, setLanguage] = useState(""); // Language
+  const [partOfSpeech, setPartOfSpeech] = useState(""); // Part of speech
+  const [definition, setDefinition] = useState(""); // Definition
+  const [exampleSentence, setExampleSentence] = useState(""); // Example sentence
+  const [exampleTranslation, setExampleTranslation] = useState(""); // Example translation
+
+  // State for validation errors
   const [errors, setErrors] = useState({});
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   const cardData = {
+  //     word_text: wordText,
+  //     ipa,
+  //     language,
+  //     part_of_speech: partOfSpeech,
+  //     lemma,
+  //     definition,
+  //   };
+
+  //   const errors = await dispatch(thunkCreateCard(cardData));
+  //   if (errors) {
+  //     setErrors(errors); // Display validation errors
+  //   } else {
+  //     closeModal(); // Close the modal on success
+  //   }
+  // };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const cardData = {
-      word_text: wordText,
-      ipa,
-      language,
-      part_of_speech: partOfSpeech,
-      lemma,
-      definition,
+      word_text: wordText.trim(), // Ensure no extra spaces
+      pronunciation: pronunciation.trim(), // Use pronunciation instead of ipa
+      language: language.trim(), // Trim language input
+      part_of_speech: partOfSpeech.trim(), // Trim part of speech input
+      definition: definition.trim(), // Trim definition input
+      example_sentence: exampleSentence.trim(), // Trim example sentence input
+      example_translation: exampleTranslation.trim(), // Trim example translation input
     };
 
-    const errors = await dispatch(thunkCreateCard(cardData));
-    if (errors) {
-      setErrors(errors); // Display validation errors
+
+    const response = await dispatch(thunkCreateCard(cardData)); // Dispatch the thunk
+
+    if (response.errors) {
+      setErrors(response.errors); // Display validation errors
     } else {
+      if (onCardCreated) {
+        onCardCreated(); // Notify parent to refetch cards
+      }
       closeModal(); // Close the modal on success
     }
   };
+
 
   return (
 <form onSubmit={handleSubmit} className="create-card-modal">
   <h1>Create a New Card</h1>
 
+  {/* Word Text (Required) */}
   <div className="input-group">
     <input
       type="text"
@@ -51,16 +87,18 @@ function CreateCardModal() {
     {errors.word_text && <p className="error-text">{errors.word_text}</p>}
   </div>
 
+  {/* Pronunciation (Optional) */}
   <div className="input-group">
     <input
       type="text"
       className="input-field"
-      placeholder="IPA"
-      value={ipa}
-      onChange={(e) => setIpa(e.target.value)}
+      placeholder="Pronunciation"
+      value={pronunciation}
+      onChange={(e) => setPronunciation(e.target.value)}
     />
   </div>
 
+  {/* Language (Required) */}
   <div className="input-group">
     <input
       type="text"
@@ -73,6 +111,7 @@ function CreateCardModal() {
     {errors.language && <p className="error-text">{errors.language}</p>}
   </div>
 
+  {/* Part of Speech (Required) */}
   <div className="input-group">
     <input
       type="text"
@@ -85,16 +124,7 @@ function CreateCardModal() {
     {errors.part_of_speech && <p className="error-text">{errors.part_of_speech}</p>}
   </div>
 
-  <div className="input-group">
-    <input
-      type="text"
-      className="input-field"
-      placeholder="Lemma"
-      value={lemma}
-      onChange={(e) => setLemma(e.target.value)}
-    />
-  </div>
-
+  {/* Definition (Required) */}
   <div className="input-group">
     <input
       type="text"
@@ -107,8 +137,32 @@ function CreateCardModal() {
     {errors.definition && <p className="error-text">{errors.definition}</p>}
   </div>
 
-  <button type="submit" className="form-button form-button--green">Create Card</button>
+  {/* Example Sentence (Optional) */}
+  <div className="input-group">
+    <textarea
+      className="input-field"
+      placeholder="Example Sentence"
+      value={exampleSentence}
+      onChange={(e) => setExampleSentence(e.target.value)}
+    />
+  </div>
+
+  {/* Example Translation (Optional) */}
+  <div className="input-group">
+    <textarea
+      className="input-field"
+      placeholder="Example Translation"
+      value={exampleTranslation}
+      onChange={(e) => setExampleTranslation(e.target.value)}
+    />
+  </div>
+
+  <button type="submit" className="form-button form-button--green">
+    Create Card
+  </button>
 </form>
+
+
 
   );
 }

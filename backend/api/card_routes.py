@@ -82,13 +82,14 @@ def create_card():
         # Create the Word instance using IDs for foreign keys
         new_card = Word(
             word_text=data["word_text"],
-            ipa=data.get("ipa"),
+            pronunciation=data.get("pronunciation"),  # Add pronunciation
             part_of_speech_id=part_of_speech.id,
             language_id=language.id,
-            lemma=data.get("lemma"),
             image_url=data.get("image_url"),
             card_count=data.get("card_count", 1),  # Default to 1 if not provided
-            definition=data["definition"],  # Add this line to handle the definition field
+            definition=data.get("definition"),  # Use get to avoid KeyErrors
+            example_sentence=data.get("example_sentence"),  # Add example sentence
+            example_translation=data.get("example_translation"),  # Add example translation
         )
 
         db.session.add(new_card)

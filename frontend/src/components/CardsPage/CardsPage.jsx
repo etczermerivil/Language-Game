@@ -39,6 +39,12 @@ const partOfSpeechParticleColors = {
   default: ['#CCCCCC', '#F2F2F2'],     // Neutral colors
 };
 
+// const partOfSpeechMap = {
+//   1: 'Noun',
+//   2: 'Verb',
+//   3: 'Adjective',
+//   4: 'Article',
+// };
 
 function CardsPage() {
   // State to store fetched cards
@@ -102,28 +108,64 @@ const handleDeleteCardClick = () => {
 
 
   // Fetch cards from the backend
+  // useEffect(() => {
+  //   fetch('/api/cards') // Replace with your actual API endpoint
+  //     .then((response) => response.json())
+  //     .then((data) => setCards(data))
+  //     .catch((error) => console.error('Error fetching data:', error));
+  // }, []);
+
   useEffect(() => {
-    fetch('/api/cards') // Replace with your actual API endpoint
+    fetch('/api/cards')
       .then((response) => response.json())
-      .then((data) => setCards(data))
+      .then((data) => {
+        console.log('Fetched cards:', data); // Log the cards
+        setCards(data);
+      })
       .catch((error) => console.error('Error fetching data:', error));
   }, []);
 
-  // useEffect(() => {
-  //   setCards(reduxCards); // Initialize local state with global state
-  // }, [reduxCards]);
-
   //Create
+  // const handleCreateCardClick = () => {
+  //   setModalContent(<CreateCardModal />);
+  //   setModalVisible(true);
+  // };
+
   const handleCreateCardClick = () => {
-    setModalContent(<CreateCardModal />);
+    setModalContent(
+      <CreateCardModal
+        onCardCreated={async () => {
+          const response = await fetch('/api/cards'); // Fetch all cards
+          const cardsData = await response.json();
+
+          console.log('Updated cards after refetch:', cardsData);
+
+          setCards(cardsData); // Update the parent state with all cards
+
+          setTimeout(() => {
+            const swiper = swiperRef.current;
+            if (swiper) {
+              // Center the newly created card
+              swiper.slideTo(cardsData.length - Math.floor(swiper.params.slidesPerView / 2));
+            }
+          }, 100); // Adding a slight delay ensures Swiper has updated
+
+        }}
+      />
+    );
+
+    // Ensure the modal is visible
     setModalVisible(true);
   };
 
 
 
+
+
+  //Slide change
   const handleSlideChange = (swiper) => {
-    const activeIndex = swiper.realIndex; // Get the correct slide index
-    const activeCard = cards[activeIndex]; // Retrieve the active card
+    const activeIndex = swiper.realIndex;
+    const activeCard = cards[activeIndex];
     if (activeCard) {
       // Retrieve gradient for cards
       const color =
