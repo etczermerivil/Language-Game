@@ -135,10 +135,14 @@
   z-index: 10;
   margin-right: 20px;
   overflow: hidden;
-
-
 }
 
+
+.dropdownMenu:focus-within,
+.dropdownMenu:hover {
+  animation: pulsate 3s infinite;
+  outline: none;
+}
 
 .dropdownItem {
   padding: 10px 15px;

@@ -10,9 +10,20 @@ ARG DATABASE_URL
 ARG SCHEMA
 ARG SECRET_KEY
 
-WORKDIR /var/www
+# Set the working directory to backend
+WORKDIR /var/www/backend
 
+# Copy the backend folder to the working directory
+COPY backend /var/www/backend
+
+# Install Python dependencies
 COPY requirements.txt .
+RUN pip install -r requirements.txt
+
+
+# WORKDIR /var/www
+
+# COPY requirements.txt .
 
 RUN pip install -r requirements.txt
 RUN pip install psycopg2
