@@ -6,9 +6,6 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
 from .models import db, User
 
-from .seeds import seed_commands
-from .config import Config
-
 #Routes
 from .api.color_routes import color_routes
 from .api.game_routes import game_routes
@@ -19,9 +16,12 @@ from .api.deck_routes import deck_routes
 from .api.language_routes import language_routes
 
 
+from .seeds import seed_commands
+from .config import Config
 
 
-app = Flask(__name__, static_folder='../react-vite/dist', static_url_path='/')
+
+app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
 
 # Setup login manager
 login = LoginManager(app)
@@ -53,12 +53,6 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
-
-# Since we are deploying with Docker and Flask,
-# we won't be using a buildpack when we deploy to Heroku.
-# Therefore, we need to make sure that in production any
-# request made over http is redirected to https.
-# Well.........
 @app.before_request
 def https_redirect():
     if os.environ.get('FLASK_ENV') == 'production':
@@ -68,16 +62,16 @@ def https_redirect():
             return redirect(url, code=code)
 
 
-# @app.after_request
-# def inject_csrf_token(response):
-#     response.set_cookie(
-#         'csrf_token',
-#         generate_csrf(),
-#         secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
-#         samesite='Strict' if os.environ.get(
-#             'FLASK_ENV') == 'production' else None,
-#         httponly=True)
-#     return response
+@app.after_request
+def inject_csrf_token(response):
+    response.set_cookie(
+        'csrf_token',
+        generate_csrf(),
+        secure=True if os.environ.get('FLASK_ENV') == 'production' else False,
+        samesite='Strict' if os.environ.get(
+            'FLASK_ENV') == 'production' else None,
+        httponly=True)
+    return response
 
 @app.after_request
 def inject_csrf_token(response):
@@ -115,6 +109,6 @@ def react_root(path):
     return app.send_static_file('index.html')
 
 
-# @app.errorhandler(404)
-# def not_found(e):
-#     return app.send_static_file('index.html')
+@app.errorhandler(404)
+def not_found(e):
+    return app.send_static_file('index.html')
