@@ -5,7 +5,7 @@ from .parts_of_speech import seed_parts_of_speech, undo_parts_of_speech
 from .language_patterns import seed_language_patterns, undo_language_patterns
 from .seed_data import seed_words, undo_words
 from .decks import seed_decks, undo_decks
-from backend.models.db import db, environment
+from backend.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
 seed_commands = AppGroup('seed')
