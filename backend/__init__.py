@@ -18,7 +18,8 @@ from .api.language_routes import language_routes
 
 from .seeds import seed_commands
 from .config import Config
-
+from dotenv import load_dotenv
+load_dotenv()
 
 
 app = Flask(__name__, static_folder='../frontend/dist', static_url_path='/')
@@ -73,16 +74,16 @@ def inject_csrf_token(response):
         httponly=True)
     return response
 
-@app.after_request
-def inject_csrf_token(response):
-    response.set_cookie(
-        'csrf_token',
-        generate_csrf(),
-        secure=False,  # Set to True in production with HTTPS
-        samesite=None,  # Allow cross-origin requests
-        httponly=False  # Make it accessible in JavaScript
-    )
-    return response
+# @app.after_request
+# def inject_csrf_token(response):
+#     response.set_cookie(
+#         'csrf_token',
+#         generate_csrf(),
+#         secure=False,  # Set to True in production with HTTPS
+#         samesite=None,  # Allow cross-origin requests
+#         httponly=False  # Make it accessible in JavaScript
+#     )
+#     return response
 
 @app.route("/api/docs")
 def api_help():
