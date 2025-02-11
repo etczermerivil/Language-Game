@@ -4,7 +4,8 @@ RUN apk add build-base
 
 RUN apk add postgresql-dev gcc python3-dev musl-dev
 
-ARG FLASK_APP
+# ARG FLASK_APP
+ENV FLASK_APP=backend
 ARG FLASK_ENV
 ARG DATABASE_URL
 ARG SCHEMA
